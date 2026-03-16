@@ -40,14 +40,18 @@ This project is configured to publish the demo page to GitHub Pages.
 ## Structure
 
 - `/docs` - Contains the demo HTML page (served by GitHub Pages)
-- `/dist` - Contains built CSS and JS files (referenced by demo page)
-- The demo page references `../dist/css/bs5-wcag.css` and `../dist/js/bs5-wcag.js`
+  - `/docs/dist` - Copy of built CSS and JS files for GitHub Pages
+- `/dist` - Contains built CSS and JS files (for npm package)
+- The demo page references `dist/css/bs5-wcag.css` and `dist/js/bs5-wcag.js`
+- Build process automatically copies `/dist` to `/docs/dist`
 
 ## Important Notes
 
 - The `dist/` folder is NOT in `.gitignore` for GitHub Pages to work
 - You must run `npm run build` before pushing to update the demo
+- The build process copies `dist/` to `docs/dist/` automatically
 - Any changes to Sass or JS require rebuilding before they appear on GitHub Pages
+- Both `/dist` and `/docs/dist` must be committed
 
 ## Updating the Demo
 

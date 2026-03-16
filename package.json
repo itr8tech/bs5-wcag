@@ -8,11 +8,17 @@
     "build:css": "sass --style=expanded --source-map --embed-sources --no-error-css scss:dist/css",
     "build:css:min": "sass --style=compressed --source-map --embed-sources --no-error-css scss:dist/css",
     "build:js": "node build/build-js.js",
-    "build": "npm run build:css && npm run build:css:min && npm run build:js",
+    "build": "npm run build:css && npm run build:css:min && npm run build:js && npm run copy:docs",
+    "copy:docs": "cp -r dist docs/",
     "watch": "npm-run-all --parallel watch:*",
     "watch:css": "nodemon --watch scss/ --ext scss --exec \"npm run build:css\"",
     "watch:js": "nodemon --watch js/ --ext js --exec \"npm run build:js\"",
-    "serve": "browser-sync start --server --files 'dist/**/*.*, docs/**/*.*' --startPath 'docs/index.html'"
+    "serve": "browser-sync start --server --files 'dist/**/*.*, docs/**/*.*' --startPath 'docs/index.html'",
+    "test:a11y": "bash scripts/test-accessibility.sh",
+    "test:lighthouse": "lhci autorun",
+    "test:axe": "axe http://localhost:8080/docs/index.html --tags wcag2a,wcag2aa,wcag2aaa",
+    "start:server": "http-server -p 8080",
+    "pretest": "npm run build"
   },
   "keywords": [
     "bootstrap",
@@ -26,7 +32,10 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@axe-core/cli": "^4.8.0",
+    "@lhci/cli": "^0.13.0",
     "browser-sync": "^3.0.0",
+    "http-server": "^14.1.1",
     "nodemon": "^3.0.0",
     "npm-run-all": "^4.1.5",
     "sass": "^1.70.0",

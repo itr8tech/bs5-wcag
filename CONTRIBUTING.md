@@ -76,6 +76,13 @@ npm run serve
 
 Before submitting a PR, verify:
 
+### Automated Tests
+- [ ] Run `./scripts/test-accessibility.sh` and ensure all tests pass
+- [ ] Lighthouse CI accessibility score is 95% or higher
+- [ ] axe-core reports zero violations
+- [ ] GitHub Actions pass on your PR
+
+### Manual Testing
 - [ ] All colors meet WCAG AAA contrast ratio (7:1)
 - [ ] Focus indicators are visible and consistent
 - [ ] All interactive elements are keyboard accessible
@@ -87,6 +94,8 @@ Before submitting a PR, verify:
 - [ ] Cross-browser compatible
 - [ ] No console errors
 - [ ] Documentation updated if needed
+
+See [TESTING.md](TESTING.md) for detailed testing instructions.
 
 ## Accessibility Testing Tools
 

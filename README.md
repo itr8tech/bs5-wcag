@@ -1,5 +1,8 @@
 # BS5-WCAG
 
+![Accessibility Tests](https://github.com/itr8tech/bs5-wcag/workflows/Accessibility%20Audit/badge.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A drop-in upgrade to make Bootstrap 5.3+ WCAG AAA compliant
 
 ## Overview
@@ -132,6 +135,15 @@ $link-decoration: underline;
 ## Demo
 
 View the live demo on GitHub Pages: https://itr8tech.github.io/bs5-wcag/
+
+## Automated Testing
+
+Every push and pull request is automatically tested for accessibility compliance using:
+
+- **Lighthouse CI**: Validates WCAG 2.1 Level AAA criteria
+- **axe-core**: Runs comprehensive accessibility audits
+
+See [TESTING.md](TESTING.md) for detailed testing information and how to run tests locally.
 
 ## Development
 
