@@ -129,6 +129,10 @@ $min-touch-target-size: 44px;
 $link-decoration: underline;
 ```
 
+## Demo
+
+View the live demo on GitHub Pages: https://itr8tech.github.io/bs5-wcag/
+
 ## Development
 
 ### Prerequisites
