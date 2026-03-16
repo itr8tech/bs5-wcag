@@ -92,6 +92,23 @@ jobs:
                 console.log(`  ${violation.description}`);
                 console.log(`  Help: ${violation.helpUrl}`);
                 console.log(`  Affected nodes: ${violation.nodes.length}`);
+
+                // Show detailed info for each node
+                violation.nodes.forEach((node, i) => {
+                  console.log(`\n  Node ${i + 1}:`);
+                  console.log(`    HTML: ${node.html.substring(0, 150)}`);
+                  console.log(`    Target: ${node.target.join(' > ')}`);
+                  if (node.any && node.any.length > 0) {
+                    node.any.forEach(check => {
+                      if (check.message) {
+                        console.log(`    Issue: ${check.message}`);
+                      }
+                      if (check.data) {
+                        console.log(`    Data:`, JSON.stringify(check.data, null, 2));
+                      }
+                    });
+                  }
+                });
               });
               process.exit(1);
             } else {

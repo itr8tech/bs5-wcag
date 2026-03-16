@@ -52,8 +52,18 @@ const testUrl = process.argv[2] || 'http://localhost:8080/docs/index.html';
         if (violation.nodes.length > 0) {
           violation.nodes.forEach((node, nodeIndex) => {
             console.log(`   ${nodeIndex + 1}) ${node.html.substring(0, 100)}...`);
+            console.log(`      Target: ${node.target.join(' > ')}`);
             if (node.failureSummary) {
               console.log(`      ${node.failureSummary.split('\n')[0]}`);
+            }
+            // Show contrast data if available
+            if (node.any && node.any.length > 0) {
+              node.any.forEach(check => {
+                if (check.data && check.data.contrastRatio) {
+                  console.log(`      Contrast: ${check.data.contrastRatio.toFixed(2)}:1 (expected ≥7:1)`);
+                  console.log(`      FG: ${check.data.fgColor}, BG: ${check.data.bgColor}`);
+                }
+              });
             }
           });
         }
