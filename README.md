@@ -148,7 +148,7 @@ See [TESTING.md](TESTING.md) for detailed testing information and how to run tes
 ## Development
 
 ### Prerequisites
-- Node.js 14+
+- Node.js 20+ (required for testing tools)
 - npm or yarn
 
 ### Build from Source
