@@ -37,8 +37,12 @@ jobs:
       - name: Install Lighthouse CI
         run: npm install -g @lhci/cli@0.13.x
 
-      - name: Install axe-core CLI
-        run: npm install -g @axe-core/cli
+      - name: Setup Chrome and ChromeDriver
+        run: |
+          # Install browser-driver-manager to get matching versions
+          npm install -g browser-driver-manager
+          # Install matching Chrome and ChromeDriver
+          npx browser-driver-manager install chrome
 
       - name: Start server
         run: |
@@ -49,24 +53,56 @@ jobs:
         run: lhci autorun
         continue-on-error: true
 
-      - name: Run axe accessibility tests
+      - name: Run axe accessibility tests with Puppeteer
         run: |
-          axe http://localhost:8080/docs/index.html \
-            --exit \
-            --tags wcag2a,wcag2aa,wcag2aaa \
-            --stdout > axe-results.json || true
+          # Install axe with puppeteer (no chromedriver issues)
+          npm install --no-save @axe-core/puppeteer puppeteer
 
-          # Display results
-          cat axe-results.json
+          # Create test script
+          cat > axe-test.js << 'AXESCRIPT'
+          const { AxePuppeteer } = require('@axe-core/puppeteer');
+          const puppeteer = require('puppeteer');
 
-          # Check for violations
-          if grep -q '"violations":\s*\[\s*\]' axe-results.json; then
-            echo "✓ No accessibility violations found!"
-            exit 0
-          else
-            echo "✗ Accessibility violations detected"
-            exit 1
-          fi
+          (async () => {
+            const browser = await puppeteer.launch({
+              headless: 'new',
+              args: ['--no-sandbox', '--disable-setuid-sandbox']
+            });
+            const page = await browser.newPage();
+            await page.goto('http://localhost:8080/docs/index.html');
+
+            const results = await new AxePuppeteer(page)
+              .withTags(['wcag2a', 'wcag2aa', 'wcag2aaa'])
+              .analyze();
+
+            await browser.close();
+
+            // Save results
+            require('fs').writeFileSync('axe-results.json', JSON.stringify(results, null, 2));
+
+            console.log('\n=== Axe Accessibility Results ===');
+            console.log(`Violations: ${results.violations.length}`);
+            console.log(`Passes: ${results.passes.length}`);
+            console.log(`Incomplete: ${results.incomplete.length}`);
+
+            if (results.violations.length > 0) {
+              console.log('\n❌ Violations found:');
+              results.violations.forEach(violation => {
+                console.log(`\n- ${violation.id} (${violation.impact})`);
+                console.log(`  ${violation.description}`);
+                console.log(`  Help: ${violation.helpUrl}`);
+                console.log(`  Affected nodes: ${violation.nodes.length}`);
+              });
+              process.exit(1);
+            } else {
+              console.log('\n✅ No accessibility violations found!');
+              process.exit(0);
+            }
+          })();
+          AXESCRIPT
+
+          # Run the test
+          node axe-test.js
 
       - name: Upload Lighthouse results
         uses: actions/upload-artifact@v4

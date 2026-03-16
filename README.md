@@ -140,8 +140,8 @@ View the live demo on GitHub Pages: https://itr8tech.github.io/bs5-wcag/
 
 Every push and pull request is automatically tested for accessibility compliance using:
 
-- **Lighthouse CI**: Validates WCAG 2.1 Level AAA criteria
-- **axe-core**: Runs comprehensive accessibility audits
+- **Lighthouse CI**: Validates WCAG 2.1 Level AAA criteria (100% score required)
+- **axe-core with Puppeteer**: Runs comprehensive accessibility audits (0 violations required)
 
 See [TESTING.md](TESTING.md) for detailed testing information and how to run tests locally.
 

@@ -16,7 +16,7 @@ Every code change is automatically tested using:
 
 | Tool | Purpose | Threshold |
 |------|---------|-----------|
-| **Lighthouse CI** | Comprehensive accessibility audit | ≥95% accessibility score |
+| **Lighthouse CI** | Comprehensive accessibility audit | 100% accessibility score |
 | **axe-core** | WCAG 2.1 A/AA/AAA violation detection | 0 violations |
 
 **Test Frequency:**

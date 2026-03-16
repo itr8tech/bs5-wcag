@@ -21,9 +21,9 @@ if ! command -v lhci &> /dev/null; then
     npm install -g @lhci/cli@0.13.x
 fi
 
-if ! command -v axe &> /dev/null; then
-    echo -e "${YELLOW}Installing axe-core CLI...${NC}"
-    npm install -g @axe-core/cli
+if ! [ -f "node_modules/@axe-core/puppeteer/index.js" ]; then
+    echo -e "${YELLOW}Installing axe-core Puppeteer...${NC}"
+    npm install --no-save @axe-core/puppeteer puppeteer
 fi
 
 # Build the project
@@ -62,7 +62,7 @@ fi
 echo ""
 echo "Running axe-core accessibility tests..."
 echo "---------------------------------------"
-if axe http://localhost:8080/docs/index.html --tags wcag2a,wcag2aa,wcag2aaa --exit; then
+if node scripts/test-axe-puppeteer.js http://localhost:8080/docs/index.html; then
     echo -e "${GREEN}✓ axe tests passed!${NC}"
     AXE_PASS=true
 else

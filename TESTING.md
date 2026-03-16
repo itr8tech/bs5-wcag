@@ -13,14 +13,15 @@ Every push and pull request automatically runs accessibility audits using:
 
 **Lighthouse** (`lighthouserc.json`):
 - Runs 3 times per URL for consistency
-- Requires minimum accessibility score of 95%
+- Requires 100% accessibility score (perfect score)
 - Tests all WCAG 2.1 Level A, AA, and AAA criteria
 - Validates ARIA attributes, color contrast, semantic HTML, and more
 
-**axe-core** (via GitHub Actions):
+**axe-core** (via Puppeteer):
 - Tests against WCAG 2.0 Level A, AA, and AAA tags
+- Uses Puppeteer (bundled Chrome) - no ChromeDriver version issues
 - Fails CI if any violations are found
-- Provides detailed violation reports
+- Provides detailed violation reports with element selectors
 
 ### Viewing Results
 
