@@ -1,0 +1,181 @@
+// Enhanced Buttons for WCAG AAA Compliance
+// Minimum touch target size and clear visual states
+
+// All buttons meet minimum touch target size
+.btn {
+  min-height: $min-touch-target-size !important;
+  min-width: $min-touch-target-size !important;
+  padding: 0.625rem 1.25rem !important;
+  font-weight: 600 !important;
+  border-width: 2px !important;
+  position: relative !important;
+
+  // Ensure text and background have sufficient contrast
+  &:focus {
+    outline: $focus-ring-width solid $focus-ring-color !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 3px rgba($focus-ring-color, 0.25) !important;
+  }
+
+  // Disabled state must be clearly distinguishable
+  &:disabled,
+  &.disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+  }
+}
+
+// Small buttons still meet minimum size
+.btn-sm {
+  min-height: $min-touch-target-size !important;
+  padding: 0.5rem 1rem !important;
+  font-size: 0.95rem !important;
+}
+
+// Large buttons
+.btn-lg {
+  min-height: 52px !important;
+  padding: 0.875rem 1.5rem !important;
+  font-size: 1.125rem !important;
+}
+
+// Outline buttons with enhanced visibility
+.btn-outline-primary {
+  border-color: #0056b3 !important;
+  color: #0056b3 !important;
+  border-width: 2px !important;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #0056b3 !important;
+    border-color: #004a9c !important;
+    color: #ffffff !important;
+  }
+}
+
+.btn-outline-secondary {
+  border-color: #4d4d4d !important;
+  color: #4d4d4d !important;
+  border-width: 2px !important;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #4d4d4d !important;
+    border-color: #404040 !important;
+    color: #ffffff !important;
+  }
+}
+
+.btn-outline-success {
+  border-color: #006600 !important;
+  color: #006600 !important;
+  border-width: 2px !important;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #006600 !important;
+    border-color: #005500 !important;
+    color: #ffffff !important;
+  }
+}
+
+.btn-outline-danger {
+  border-color: #990000 !important;
+  color: #990000 !important;
+  border-width: 2px !important;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #990000 !important;
+    border-color: #800000 !important;
+    color: #ffffff !important;
+  }
+}
+
+.btn-outline-warning {
+  border-color: #664d00 !important;
+  color: #664d00 !important;
+  border-width: 2px !important;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #664d00 !important;
+    border-color: #594300 !important;
+    color: #ffffff !important;
+  }
+}
+
+.btn-outline-info {
+  border-color: #006d99 !important;
+  color: #006d99 !important;
+  border-width: 2px !important;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #006d99 !important;
+    border-color: #005c80 !important;
+    color: #ffffff !important;
+  }
+}
+
+// Link buttons
+.btn-link {
+  color: #0056b3 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 0.2em !important;
+  border: 2px solid transparent !important;
+
+  &:hover,
+  &:focus {
+    color: #003d82 !important;
+    text-decoration: underline !important;
+    text-decoration-thickness: 2px !important;
+  }
+
+  &:focus {
+    outline: $focus-ring-width solid $focus-ring-color !important;
+    outline-offset: 2px !important;
+  }
+}
+
+// Button groups
+.btn-group {
+  .btn {
+    border-width: 2px !important;
+
+    &:not(:last-child) {
+      border-right-width: 1px !important;
+    }
+
+    &:focus {
+      z-index: 3 !important;
+    }
+  }
+}
+
+// Close button
+.btn-close {
+  min-width: $min-touch-target-size !important;
+  min-height: $min-touch-target-size !important;
+  opacity: 1 !important;
+  background-color: transparent !important;
+  padding: 0.5rem !important;
+
+  &:hover {
+    opacity: 0.75 !important;
+  }
+
+  &:focus {
+    outline: $focus-ring-width solid $focus-ring-color !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 3px rgba($focus-ring-color, 0.25) !important;
+    opacity: 1 !important;
+  }
+}

@@ -1,0 +1,101 @@
+// Enhanced Typography for WCAG AAA Compliance
+// Addresses WCAG 1.4.8 (Visual Presentation) and 1.4.12 (Text Spacing)
+
+// Base text improvements
+body {
+  line-height: $line-height-base !important;
+  letter-spacing: $letter-spacing-base !important;
+}
+
+// Paragraph spacing
+p {
+  margin-bottom: $paragraph-margin-bottom !important;
+}
+
+// Enhanced readability for longer text blocks
+.lead,
+article p,
+.card-text,
+.alert {
+  line-height: 1.7 !important;
+  letter-spacing: 0.02em !important;
+}
+
+// List spacing
+ul,
+ol {
+  li {
+    margin-bottom: 0.5rem !important;
+    line-height: 1.7 !important;
+  }
+}
+
+// Headings - ensure sufficient spacing
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  margin-top: 1.5em !important;
+  margin-bottom: 0.75em !important;
+  line-height: 1.3 !important;
+  letter-spacing: 0.01em !important;
+}
+
+// First heading shouldn't have top margin
+h1:first-child, h2:first-child, h3:first-child,
+h4:first-child, h5:first-child, h6:first-child,
+.h1:first-child, .h2:first-child, .h3:first-child,
+.h4:first-child, .h5:first-child, .h6:first-child {
+  margin-top: 0 !important;
+}
+
+// Link styling - must be distinguishable by more than color alone
+a:not(.btn):not(.nav-link):not(.dropdown-item):not(.page-link):not(.navbar-brand) {
+  text-decoration: $link-decoration !important;
+  text-underline-offset: 0.2em !important;
+
+  &:hover,
+  &:focus {
+    text-decoration: $link-hover-decoration !important;
+    text-decoration-thickness: 2px !important;
+  }
+}
+
+// Code blocks
+pre,
+code,
+kbd,
+samp {
+  line-height: 1.6 !important;
+}
+
+// Ensure text can be resized up to 200% without loss of content
+html {
+  // Allow text resize
+  text-size-adjust: 100% !important;
+  -webkit-text-size-adjust: 100% !important;
+  -moz-text-size-adjust: 100% !important;
+  -ms-text-size-adjust: 100% !important;
+}
+
+// Small text should maintain readability
+small,
+.small {
+  font-size: 87.5% !important; // Bootstrap's default, but ensure it's not smaller
+  line-height: 1.6 !important;
+}
+
+// Text spacing user override support
+// Allow users to override spacing without breaking layout
+* {
+  line-height: inherit !important;
+}
+
+// Ensure sufficient spacing between words and letters
+.text-spacing-enhanced {
+  line-height: 1.5 !important;
+  letter-spacing: 0.12em !important;
+  word-spacing: 0.16em !important;
+
+  p {
+    margin-bottom: 2em !important;
+  }
+}

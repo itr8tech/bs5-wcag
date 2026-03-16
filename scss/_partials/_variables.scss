@@ -1,0 +1,31 @@
+// WCAG AAA Compliant Variables
+// Based on Bootstrap 5.3+ variable structure
+
+// Color contrast ratios
+// WCAG AAA requires 7:1 for normal text, 4.5:1 for large text (18pt+ or 14pt+ bold)
+$wcag-aaa-contrast-normal: 7 !default;
+$wcag-aaa-contrast-large: 4.5 !default;
+
+// Enhanced focus indicators
+// WCAG AAA requires highly visible focus indicators
+$focus-ring-width: 3px !default;
+$focus-ring-opacity: 1 !default;
+$focus-ring-color: #0066cc !default; // High contrast blue
+$focus-ring-offset: 2px !default;
+
+// Typography
+// Enhanced text spacing for better readability
+$line-height-base: 1.6 !default; // Increased from Bootstrap's 1.5
+$paragraph-margin-bottom: 1.5rem !default;
+$letter-spacing-base: 0.01em !default;
+
+// Link underlines - required for AAA when color alone isn't sufficient
+$link-decoration: underline !default;
+$link-hover-decoration: underline !default;
+
+// Minimum touch target size (44x44 CSS pixels per WCAG)
+$min-touch-target-size: 44px !default;
+
+// Animation and motion
+$transition-duration-base: 0.2s !default;
+$enable-reduced-motion: true !default;

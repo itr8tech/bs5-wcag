@@ -1,0 +1,60 @@
+// WCAG contrast calculation functions
+
+@use "sass:math";
+
+// Calculate relative luminance of a color
+// Based on WCAG 2.1 specification
+@function luminance($color) {
+  $rgb: (
+    'r': red($color),
+    'g': green($color),
+    'b': blue($color)
+  );
+
+  @each $key, $value in $rgb {
+    $value: $value / 255;
+
+    @if $value < 0.03928 {
+      $value: $value / 12.92;
+    } @else {
+      $value: ($value + 0.055) / 1.055;
+      $value: math.pow($value, 2.4);
+    }
+
+    $rgb: map-merge($rgb, ($key: $value));
+  }
+
+  @return (map-get($rgb, 'r') * 0.2126) + (map-get($rgb, 'g') * 0.7152) + (map-get($rgb, 'b') * 0.0722);
+}
+
+// Calculate contrast ratio between two colors
+@function contrast-ratio($foreground, $background) {
+  $l1: luminance($foreground);
+  $l2: luminance($background);
+
+  @if $l1 > $l2 {
+    @return ($l1 + 0.05) / ($l2 + 0.05);
+  } @else {
+    @return ($l2 + 0.05) / ($l1 + 0.05);
+  }
+}
+
+// Get AAA compliant text color for a given background
+@function wcag-aaa-color($background, $prefer-dark: true) {
+  $white-contrast: contrast-ratio(#fff, $background);
+  $black-contrast: contrast-ratio(#000, $background);
+
+  // WCAG AAA requires 7:1 ratio for normal text
+  @if $white-contrast >= 7 and ($prefer-dark == false or $black-contrast < 7) {
+    @return #fff;
+  } @else if $black-contrast >= 7 {
+    @return #000;
+  } @else {
+    // Neither works, return the one with better contrast
+    @if $white-contrast > $black-contrast {
+      @return #fff;
+    } @else {
+      @return #000;
+    }
+  }
+}

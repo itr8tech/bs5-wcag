@@ -1,0 +1,81 @@
+// Enhanced Focus Indicators for WCAG AAA Compliance
+// WCAG 2.4.7 (Level AA) and 2.4.11 (Level AAA) requirements
+
+// All interactive elements
+a,
+button,
+[role="button"],
+input,
+select,
+textarea,
+[tabindex]:not([tabindex="-1"]) {
+  &:focus {
+    outline: $focus-ring-width solid $focus-ring-color !important;
+    outline-offset: $focus-ring-offset !important;
+    box-shadow: 0 0 0 $focus-ring-offset rgba($focus-ring-color, 0.25) !important;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: 0 !important;
+    box-shadow: none !important;
+  }
+
+  &:focus-visible {
+    outline: $focus-ring-width solid $focus-ring-color !important;
+    outline-offset: $focus-ring-offset !important;
+    box-shadow: 0 0 0 $focus-ring-offset rgba($focus-ring-color, 0.25) !important;
+  }
+}
+
+// Bootstrap specific components
+.btn,
+.form-control,
+.form-select,
+.form-check-input {
+  &:focus {
+    border-color: $focus-ring-color !important;
+    box-shadow: 0 0 0 $focus-ring-offset rgba($focus-ring-color, 0.5) !important;
+  }
+}
+
+// Navigation items
+.nav-link,
+.navbar-brand,
+.page-link,
+.dropdown-item {
+  &:focus {
+    outline: $focus-ring-width solid $focus-ring-color !important;
+    outline-offset: 1px !important;
+  }
+}
+
+// Cards and interactive containers
+.card-link,
+.list-group-item-action {
+  &:focus {
+    outline: $focus-ring-width solid $focus-ring-color !important;
+    outline-offset: -2px !important; // Inside the element
+  }
+}
+
+// Accordion buttons
+.accordion-button {
+  &:focus {
+    border-color: $focus-ring-color !important;
+    box-shadow: 0 0 0 $focus-ring-offset rgba($focus-ring-color, 0.5) !important;
+  }
+}
+
+// Modal close buttons and other small interactive elements
+.btn-close {
+  &:focus {
+    outline: $focus-ring-width solid $focus-ring-color !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 $focus-ring-offset rgba($focus-ring-color, 0.5) !important;
+  }
+}
+
+// Ensure focus is never hidden
+*:focus {
+  scroll-margin-block: 5rem; // Ensure focused elements aren't hidden behind sticky headers
+}

@@ -1,0 +1,135 @@
+// WCAG AAA Mixins and Helpers
+
+@use "sass:math";
+@use "sass:map";
+@use "sass:color";
+
+// Mixin to create AAA compliant focus styles
+@mixin wcag-focus($color: $focus-ring-color, $width: $focus-ring-width, $offset: $focus-ring-offset) {
+  &:focus {
+    outline: $width solid $color !important;
+    outline-offset: $offset !important;
+    box-shadow: 0 0 0 $offset rgba($color, 0.25) !important;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: 0 !important;
+    box-shadow: none !important;
+  }
+
+  &:focus-visible {
+    outline: $width solid $color !important;
+    outline-offset: $offset !important;
+    box-shadow: 0 0 0 $offset rgba($color, 0.25) !important;
+  }
+}
+
+// Mixin to ensure minimum touch target size
+@mixin touch-target($min-size: $min-touch-target-size) {
+  min-width: $min-size !important;
+  min-height: $min-size !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+// Mixin for accessible link styles
+@mixin accessible-link($color: #0056b3, $hover-color: #003d82) {
+  color: $color !important;
+  text-decoration: underline !important;
+  text-underline-offset: 0.2em !important;
+
+  &:hover,
+  &:focus {
+    color: $hover-color !important;
+    text-decoration: underline !important;
+    text-decoration-thickness: 2px !important;
+  }
+
+  &:focus {
+    outline: $focus-ring-width solid $focus-ring-color !important;
+    outline-offset: 2px !important;
+  }
+}
+
+// Mixin for reduced motion support
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// Mixin for visually hidden but screen reader accessible content
+@mixin sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+@mixin sr-only-focusable {
+  &:active,
+  &:focus {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+  }
+}
+
+// Mixin to create high contrast borders
+@mixin high-contrast-border($width: 2px, $color: #999999) {
+  border-width: $width !important;
+  border-color: $color !important;
+  border-style: solid !important;
+}
+
+// Mixin for enhanced button states
+@mixin button-wcag-states($bg-color, $text-color: #ffffff, $border-color: null) {
+  @if $border-color == null {
+    $border-color: color.adjust($bg-color, $lightness: -10%);
+  }
+
+  background-color: $bg-color !important;
+  border-color: $border-color !important;
+  color: $text-color !important;
+  border-width: 2px !important;
+
+  &:hover {
+    background-color: color.adjust($bg-color, $lightness: -10%) !important;
+    border-color: color.adjust($border-color, $lightness: -10%) !important;
+    color: $text-color !important;
+  }
+
+  &:focus {
+    background-color: color.adjust($bg-color, $lightness: -10%) !important;
+    border-color: $focus-ring-color !important;
+    color: $text-color !important;
+    outline: $focus-ring-width solid $focus-ring-color !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 3px rgba($focus-ring-color, 0.25) !important;
+  }
+
+  &:active {
+    background-color: color.adjust($bg-color, $lightness: -15%) !important;
+    border-color: color.adjust($border-color, $lightness: -15%) !important;
+    color: $text-color !important;
+  }
+
+  &:disabled,
+  &.disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+  }
+}

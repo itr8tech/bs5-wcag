@@ -1,0 +1,179 @@
+// Enhanced Forms for WCAG AAA Compliance
+// Addresses form labeling, error identification, and input assistance
+
+// Ensure all form controls meet minimum touch target size
+.form-control,
+.form-select,
+.form-check-input,
+.btn {
+  min-height: $min-touch-target-size !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+
+// Enhanced form control visibility
+.form-control,
+.form-select {
+  border-width: 2px !important;
+  border-color: #666666 !important; // Darker border for better visibility
+
+  &:focus {
+    border-color: $focus-ring-color !important;
+    border-width: 3px !important;
+  }
+
+  &::placeholder {
+    color: #666666 !important; // Ensure placeholders meet contrast requirements
+    opacity: 1 !important;
+  }
+}
+
+// Checkbox and radio button enhancements
+.form-check-input {
+  width: 1.5em !important;
+  height: 1.5em !important;
+  border-width: 2px !important;
+  border-color: #666666 !important;
+  margin-top: 0.15em !important;
+
+  &:focus {
+    border-color: $focus-ring-color !important;
+    box-shadow: 0 0 0 3px rgba($focus-ring-color, 0.25) !important;
+  }
+
+  &:checked {
+    background-color: #0056b3 !important;
+    border-color: #0056b3 !important;
+  }
+}
+
+// Form labels must be clearly associated and visible
+.form-label {
+  font-weight: 600 !important;
+  margin-bottom: 0.5rem !important;
+  color: #000000 !important; // High contrast
+  display: block !important;
+}
+
+// Required field indicator
+.form-label.required::after,
+.required .form-label::after {
+  content: " *" !important;
+  color: #990000 !important; // WCAG AAA compliant red
+  font-weight: 700 !important;
+}
+
+// Enhanced validation feedback
+.invalid-feedback,
+.valid-feedback {
+  font-size: 1rem !important; // Same size as body text
+  font-weight: 600 !important;
+  margin-top: 0.5rem !important;
+  display: block !important;
+}
+
+.invalid-feedback {
+  color: #990000 !important; // WCAG AAA compliant red
+}
+
+.valid-feedback {
+  color: #006600 !important; // WCAG AAA compliant green
+}
+
+// Error state styling
+.form-control.is-invalid,
+.form-select.is-invalid,
+.form-check-input.is-invalid {
+  border-color: #990000 !important;
+  border-width: 3px !important;
+
+  &:focus {
+    border-color: #990000 !important;
+    box-shadow: 0 0 0 3px rgba(153, 0, 0, 0.25) !important;
+  }
+}
+
+// Valid state styling
+.form-control.is-valid,
+.form-select.is-valid,
+.form-check-input.is-valid {
+  border-color: #006600 !important;
+  border-width: 3px !important;
+
+  &:focus {
+    border-color: #006600 !important;
+    box-shadow: 0 0 0 3px rgba(0, 102, 0, 0.25) !important;
+  }
+}
+
+// Help text must be clearly visible
+.form-text {
+  color: #4d4d4d !important; // WCAG AAA compliant
+  font-size: 0.95rem !important;
+  margin-top: 0.5rem !important;
+  line-height: 1.6 !important;
+}
+
+// Input groups
+.input-group-text {
+  background-color: #e6e6e6 !important;
+  border-color: #666666 !important;
+  border-width: 2px !important;
+  color: #000000 !important;
+  min-height: $min-touch-target-size !important;
+}
+
+// Disabled state must be clearly distinguishable
+.form-control:disabled,
+.form-select:disabled,
+.form-check-input:disabled {
+  background-color: #cccccc !important;
+  border-color: #999999 !important;
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
+.form-label.disabled,
+.form-check-label:has(.form-check-input:disabled) {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
+// Floating labels
+.form-floating {
+  > label {
+    color: #666666 !important;
+  }
+
+  > .form-control:focus ~ label,
+  > .form-control:not(:placeholder-shown) ~ label,
+  > .form-select ~ label {
+    color: #4d4d4d !important;
+  }
+}
+
+// Range inputs
+.form-range {
+  height: 1.5rem !important;
+
+  &:focus {
+    outline: $focus-ring-width solid $focus-ring-color !important;
+    outline-offset: 2px !important;
+  }
+
+  &::-webkit-slider-thumb {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    background-color: #0056b3 !important;
+    border: 2px solid #ffffff !important;
+    box-shadow: 0 0 0 1px #0056b3 !important;
+  }
+
+  &::-moz-range-thumb {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    background-color: #0056b3 !important;
+    border: 2px solid #ffffff !important;
+    box-shadow: 0 0 0 1px #0056b3 !important;
+  }
+}

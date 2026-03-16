@@ -1,0 +1,377 @@
+// Enhanced Components for WCAG AAA Compliance
+// Modals, tooltips, popovers, accordions, and other interactive components
+
+// Modal enhancements
+.modal {
+  // Modal should trap focus and be clearly visible
+  .modal-dialog {
+    margin: 1.75rem auto !important;
+  }
+
+  .modal-content {
+    border-width: 2px !important;
+    border-color: #4d4d4d !important;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.5) !important;
+  }
+
+  .modal-header {
+    border-bottom-width: 2px !important;
+    border-bottom-color: #999999 !important;
+    padding: 1.25rem !important;
+
+    .modal-title {
+      color: #000000 !important;
+      font-weight: 700 !important;
+      font-size: 1.25rem !important;
+    }
+
+    .btn-close {
+      min-width: $min-touch-target-size !important;
+      min-height: $min-touch-target-size !important;
+    }
+  }
+
+  .modal-body {
+    padding: 1.25rem !important;
+    line-height: 1.7 !important;
+  }
+
+  .modal-footer {
+    border-top-width: 2px !important;
+    border-top-color: #999999 !important;
+    padding: 1.25rem !important;
+
+    .btn {
+      margin: 0 0.5rem !important;
+    }
+  }
+}
+
+.modal-backdrop {
+  background-color: #000000 !important;
+  opacity: 0.75 !important;
+
+  &.show {
+    opacity: 0.75 !important;
+  }
+}
+
+// Accordion enhancements
+.accordion {
+  .accordion-item {
+    border-width: 2px !important;
+    border-color: #999999 !important;
+
+    &:not(:first-child) {
+      border-top: 0 !important;
+    }
+  }
+
+  .accordion-button {
+    min-height: $min-touch-target-size !important;
+    padding: 1rem 1.25rem !important;
+    font-weight: 600 !important;
+    color: #000000 !important;
+    background-color: #f8f9fa !important;
+    border: none !important;
+    text-align: left !important;
+
+    &:hover {
+      background-color: #e6e6e6 !important;
+    }
+
+    &:focus {
+      outline: $focus-ring-width solid $focus-ring-color !important;
+      outline-offset: -3px !important;
+      box-shadow: 0 0 0 3px rgba($focus-ring-color, 0.25) !important;
+      z-index: 3 !important;
+    }
+
+    &:not(.collapsed) {
+      background-color: #e6e6e6 !important;
+      color: #0056b3 !important;
+      font-weight: 700 !important;
+
+      &::after {
+        transform: rotate(-180deg) !important;
+      }
+    }
+
+    &::after {
+      flex-shrink: 0 !important;
+      width: 1.25rem !important;
+      height: 1.25rem !important;
+      margin-left: auto !important;
+      transition: transform 0.2s ease-in-out !important;
+    }
+  }
+
+  .accordion-body {
+    padding: 1.25rem !important;
+    line-height: 1.7 !important;
+  }
+}
+
+// Card enhancements
+.card {
+  border-width: 2px !important;
+  border-color: #999999 !important;
+
+  .card-header,
+  .card-footer {
+    background-color: #f8f9fa !important;
+    border-width: 2px !important;
+    border-color: #999999 !important;
+    padding: 1rem 1.25rem !important;
+    font-weight: 600 !important;
+  }
+
+  .card-body {
+    padding: 1.25rem !important;
+    line-height: 1.7 !important;
+  }
+
+  .card-title {
+    color: #000000 !important;
+    font-weight: 700 !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .card-link {
+    color: #0056b3 !important;
+    text-decoration: underline !important;
+    text-underline-offset: 0.2em !important;
+
+    &:hover,
+    &:focus {
+      color: #003d82 !important;
+      text-decoration-thickness: 2px !important;
+    }
+
+    &:focus {
+      outline: $focus-ring-width solid $focus-ring-color !important;
+      outline-offset: 2px !important;
+    }
+  }
+}
+
+// List group enhancements
+.list-group {
+  .list-group-item {
+    border-width: 2px !important;
+    border-color: #999999 !important;
+    padding: 0.75rem 1.25rem !important;
+    line-height: 1.6 !important;
+
+    &:not(:first-child) {
+      border-top: 0 !important;
+    }
+
+    &.active {
+      background-color: #0056b3 !important;
+      border-color: #0056b3 !important;
+      color: #ffffff !important;
+      font-weight: 700 !important;
+    }
+  }
+
+  .list-group-item-action {
+    min-height: $min-touch-target-size !important;
+    display: flex !important;
+    align-items: center !important;
+
+    &:hover,
+    &:focus {
+      background-color: #f8f9fa !important;
+      color: #000000 !important;
+    }
+
+    &:focus {
+      outline: $focus-ring-width solid $focus-ring-color !important;
+      outline-offset: -3px !important;
+      z-index: 2 !important;
+    }
+  }
+}
+
+// Toast notifications
+.toast {
+  border-width: 2px !important;
+  border-color: #4d4d4d !important;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25) !important;
+  min-width: 300px !important;
+
+  .toast-header {
+    border-bottom-width: 2px !important;
+    border-bottom-color: #999999 !important;
+    padding: 0.75rem 1rem !important;
+    font-weight: 600 !important;
+    color: #000000 !important;
+
+    .btn-close {
+      min-width: 32px !important;
+      min-height: 32px !important;
+    }
+  }
+
+  .toast-body {
+    padding: 1rem !important;
+    line-height: 1.6 !important;
+    color: #000000 !important;
+  }
+}
+
+// Tooltips and Popovers (enhanced via JavaScript)
+.tooltip {
+  .tooltip-inner {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: 2px solid #ffffff !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+    max-width: 300px !important;
+  }
+
+  .tooltip-arrow::before {
+    border-color: #ffffff transparent !important;
+  }
+}
+
+.popover {
+  border-width: 2px !important;
+  border-color: #4d4d4d !important;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25) !important;
+  max-width: 350px !important;
+
+  .popover-header {
+    background-color: #f8f9fa !important;
+    border-bottom-width: 2px !important;
+    border-bottom-color: #999999 !important;
+    padding: 0.75rem 1rem !important;
+    font-weight: 700 !important;
+    color: #000000 !important;
+  }
+
+  .popover-body {
+    padding: 1rem !important;
+    color: #000000 !important;
+    line-height: 1.6 !important;
+  }
+}
+
+// Progress bars
+.progress {
+  height: 2rem !important;
+  background-color: #e6e6e6 !important;
+  border: 2px solid #999999 !important;
+  border-radius: 0.25rem !important;
+}
+
+.progress-bar {
+  line-height: 2rem !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  background-color: #0056b3 !important;
+
+  // Ensure text in progress bar is visible
+  &[aria-valuenow] {
+    // The percentage should be announced by screen readers
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+
+// Spinner loading indicators
+.spinner-border,
+.spinner-grow {
+  // Ensure spinners have accessible labels
+  vertical-align: middle !important;
+  border-width: 0.25em !important;
+}
+
+// Offcanvas
+.offcanvas {
+  border-width: 2px !important;
+  border-color: #4d4d4d !important;
+
+  .offcanvas-header {
+    padding: 1.25rem !important;
+    border-bottom: 2px solid #999999 !important;
+
+    .offcanvas-title {
+      font-weight: 700 !important;
+      color: #000000 !important;
+    }
+
+    .btn-close {
+      min-width: $min-touch-target-size !important;
+      min-height: $min-touch-target-size !important;
+    }
+  }
+
+  .offcanvas-body {
+    padding: 1.25rem !important;
+    line-height: 1.7 !important;
+  }
+}
+
+.offcanvas-backdrop {
+  background-color: #000000 !important;
+  opacity: 0.75 !important;
+
+  &.show {
+    opacity: 0.75 !important;
+  }
+}
+
+// Carousel
+.carousel {
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: $min-touch-target-size !important;
+    opacity: 1 !important;
+
+    &:focus {
+      outline: $focus-ring-width solid $focus-ring-color !important;
+      outline-offset: -3px !important;
+    }
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 2rem !important;
+    height: 2rem !important;
+    background-color: #000000 !important;
+    border: 2px solid #ffffff !important;
+    border-radius: 50% !important;
+  }
+
+  .carousel-indicators {
+    [data-bs-target] {
+      width: $min-touch-target-size !important;
+      height: 6px !important;
+      background-color: #ffffff !important;
+      border: 2px solid #000000 !important;
+      opacity: 0.7 !important;
+
+      &.active {
+        opacity: 1 !important;
+        background-color: #0056b3 !important;
+      }
+
+      &:focus {
+        outline: $focus-ring-width solid $focus-ring-color !important;
+        outline-offset: 2px !important;
+      }
+    }
+  }
+
+  .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.85) !important;
+    padding: 1.25rem !important;
+    border-radius: 0.25rem !important;
+    color: #ffffff !important;
+  }
+}
