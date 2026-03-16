@@ -23,7 +23,7 @@
 
 .text-info,
 .link-info {
-  color: #006d99 !important; // Darker cyan (7.08:1)
+  color: #005a80 !important; // Darker cyan (8.27:1)
 }
 
 .text-warning,
@@ -98,8 +98,8 @@
 }
 
 .bg-info {
-  background-color: #006d99 !important;
-  color: #ffffff !important; // White text on dark cyan (7.08:1)
+  background-color: #005a80 !important;
+  color: #ffffff !important; // White text on dark cyan (8.27:1)
 }
 
 .bg-warning {
@@ -144,7 +144,7 @@
 .alert-info {
   background-color: #ccf2ff !important;
   border-color: #99e6ff !important;
-  color: #004d6b !important; // Dark cyan (9.87:1)
+  color: #004060 !important; // Darker cyan (11.5:1)
 }
 
 .alert-warning {
@@ -181,7 +181,7 @@
 
   &.bg-info,
   &.text-bg-info {
-    background-color: #006d99 !important;
+    background-color: #005a80 !important;
     color: #ffffff !important;
   }
 
@@ -265,14 +265,14 @@
 }
 
 .btn-info {
-  background-color: #006d99 !important;
-  border-color: #005c80 !important;
+  background-color: #005a80 !important;
+  border-color: #004d6b !important;
   color: #ffffff !important;
 
   &:hover,
   &:focus {
-    background-color: #005c80 !important;
-    border-color: #004d6b !important;
+    background-color: #004d6b !important;
+    border-color: #004060 !important;
     color: #ffffff !important;
   }
 }

@@ -88,8 +88,8 @@
     }
 
     &:not(.collapsed) {
-      background-color: #e6e6e6 !important;
-      color: #0056b3 !important;
+      background-color: #d9d9d9 !important; // Darker background for better contrast
+      color: #003d82 !important; // Darker blue (7.13:1 on #d9d9d9)
       font-weight: 700 !important;
 
       &::after {
