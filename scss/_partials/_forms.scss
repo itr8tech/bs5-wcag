@@ -23,7 +23,7 @@
   }
 
   &::placeholder {
-    color: #666666 !important; // Ensure placeholders meet contrast requirements
+    color: #595959 !important; // AAA compliant (7.0:1 ratio)
     opacity: 1 !important;
   }
 }
