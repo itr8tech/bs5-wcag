@@ -18,6 +18,7 @@
      * Initialize all WCAG enhancements
      */
     init: function() {
+      this.initDarkMode();
       this.initFocusManagement();
       this.initKeyboardNavigation();
       this.initAriaEnhancements();
@@ -26,6 +27,84 @@
       this.initModalEnhancements();
       this.initTooltipEnhancements();
       console.log('BS5-WCAG v' + this.version + ' initialized');
+    },
+
+    /**
+     * Initialize dark mode support
+     * Respects: 1) saved preference, 2) system preference, 3) explicit data-bs-theme
+     */
+    initDarkMode: function() {
+      var html = document.documentElement;
+
+      // If an explicit theme is already set, persist it and leave it alone
+      var explicitTheme = html.getAttribute('data-bs-theme');
+      if (explicitTheme) {
+        return;
+      }
+
+      // Check for a stored preference
+      var stored = null;
+      try { stored = localStorage.getItem('bs5-wcag-theme'); } catch(e) { /* noop */ }
+
+      if (stored === 'dark' || stored === 'light') {
+        html.setAttribute('data-bs-theme', stored);
+      }
+      // Otherwise, leave no attribute set so the CSS @media query handles it automatically
+
+      // Listen for system preference changes (only when no explicit override)
+      if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+          var currentStored = null;
+          try { currentStored = localStorage.getItem('bs5-wcag-theme'); } catch(ex) { /* noop */ }
+          // Only auto-switch if user hasn't manually chosen a theme
+          if (!currentStored) {
+            html.removeAttribute('data-bs-theme');
+          }
+        });
+      }
+    },
+
+    /**
+     * Get the current effective color mode
+     * @returns {string} 'dark' or 'light'
+     */
+    getColorMode: function() {
+      var explicit = document.documentElement.getAttribute('data-bs-theme');
+      if (explicit) return explicit;
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+      return 'light';
+    },
+
+    /**
+     * Set the color mode explicitly
+     * @param {string} mode - 'dark', 'light', or 'auto'
+     */
+    setColorMode: function(mode) {
+      var html = document.documentElement;
+
+      if (mode === 'auto') {
+        html.removeAttribute('data-bs-theme');
+        try { localStorage.removeItem('bs5-wcag-theme'); } catch(e) { /* noop */ }
+        this.announce('Color mode set to auto');
+        return;
+      }
+
+      html.setAttribute('data-bs-theme', mode);
+      try { localStorage.setItem('bs5-wcag-theme', mode); } catch(e) { /* noop */ }
+      this.announce('Color mode set to ' + mode);
+    },
+
+    /**
+     * Toggle between dark and light mode
+     * @returns {string} the new mode
+     */
+    toggleColorMode: function() {
+      var current = this.getColorMode();
+      var next = current === 'dark' ? 'light' : 'dark';
+      this.setColorMode(next);
+      return next;
     },
 
     /**

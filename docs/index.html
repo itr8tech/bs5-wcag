@@ -23,6 +23,19 @@
     .demo-section:last-child {
       border-bottom: none;
     }
+    [data-bs-theme="dark"] .demo-section {
+      border-bottom-color: #495057;
+    }
+    @media (prefers-color-scheme: dark) {
+      html:not([data-bs-theme="light"]):not([data-bs-theme="dark"]) .demo-section {
+        border-bottom-color: #495057;
+      }
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
   </style>
 </head>
 <body>
@@ -50,6 +63,15 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#components">Components</a>
+          </li>
+          <li class="nav-item ms-lg-3 d-flex align-items-center">
+            <div class="theme-toggle">
+              <button type="button" class="btn btn-outline-secondary btn-sm" id="themeToggle"
+                      aria-label="Toggle dark mode">
+                <span id="themeIcon" aria-hidden="true">&#9790;</span>
+                <span id="themeLabel">Dark</span>
+              </button>
+            </div>
           </li>
         </ul>
       </div>
@@ -313,5 +335,43 @@
 
   <!-- BS5-WCAG Enhancement JavaScript -->
   <script src="dist/js/bs5-wcag.js"></script>
+
+  <!-- Dark mode toggle for demo -->
+  <script>
+    (function() {
+      function updateToggleButton() {
+        var mode = BS5WCAG.getColorMode();
+        var icon = document.getElementById('themeIcon');
+        var label = document.getElementById('themeLabel');
+        if (icon && label) {
+          if (mode === 'dark') {
+            icon.textContent = '\u2600'; // sun
+            label.textContent = 'Light';
+          } else {
+            icon.textContent = '\u263E'; // moon
+            label.textContent = 'Dark';
+          }
+        }
+      }
+
+      var btn = document.getElementById('themeToggle');
+      if (btn) {
+        btn.addEventListener('click', function() {
+          BS5WCAG.toggleColorMode();
+          updateToggleButton();
+        });
+      }
+
+      // Set initial state
+      updateToggleButton();
+
+      // Update on system preference change
+      if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+          updateToggleButton();
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
