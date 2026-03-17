@@ -1,3 +1,7 @@
+# WORK IN PROGRESS! NOT READY FOR PRODUCTION
+
+I'm not even sure this concept is worth it yet, but it's something I'm exploring. 
+
 # BS5-WCAG
 
 ![Accessibility Tests](https://github.com/itr8tech/bs5-wcag/workflows/Accessibility%20Audit/badge.svg)
