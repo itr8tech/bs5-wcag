@@ -342,81 +342,84 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- BS5-WCAG Enhancement JavaScript -->
-  <script src="dist/js/bs5-wcag.js"></script>
+  <script src="dist/js/bs5-wcag.js?v=0.1.1"></script>
 
   <!-- Theme toggle and color scheme picker -->
   <script>
     (function() {
-      if (typeof BS5WCAG === 'undefined' || !BS5WCAG.getColorMode) return;
+      if (typeof BS5WCAG === 'undefined') return;
 
       // --- Dark / Light toggle ---
-      function updateToggleButton() {
-        var mode = BS5WCAG.getColorMode();
-        var icon = document.getElementById('themeIcon');
-        var label = document.getElementById('themeLabel');
-        if (icon && label) {
-          if (mode === 'dark') {
-            icon.textContent = '\u2600';
-            label.textContent = 'Light';
-          } else {
-            icon.textContent = '\u263E';
-            label.textContent = 'Dark';
+      if (BS5WCAG.getColorMode && BS5WCAG.toggleColorMode) {
+        var updateToggleButton = function() {
+          var mode = BS5WCAG.getColorMode();
+          var icon = document.getElementById('themeIcon');
+          var label = document.getElementById('themeLabel');
+          if (icon && label) {
+            if (mode === 'dark') {
+              icon.textContent = '\u2600';
+              label.textContent = 'Light';
+            } else {
+              icon.textContent = '\u263E';
+              label.textContent = 'Dark';
+            }
           }
+        };
+
+        var btn = document.getElementById('themeToggle');
+        if (btn) {
+          btn.addEventListener('click', function() {
+            BS5WCAG.toggleColorMode();
+            updateToggleButton();
+          });
         }
-      }
 
-      var btn = document.getElementById('themeToggle');
-      if (btn) {
-        btn.addEventListener('click', function() {
-          BS5WCAG.toggleColorMode();
-          updateToggleButton();
-        });
-      }
+        updateToggleButton();
 
-      updateToggleButton();
-
-      if (window.matchMedia) {
-        var mql = window.matchMedia('(prefers-color-scheme: dark)');
-        var handler = function() { updateToggleButton(); };
-        if (mql.addEventListener) {
-          mql.addEventListener('change', handler);
-        } else if (mql.addListener) {
-          mql.addListener(handler);
+        if (window.matchMedia) {
+          var mql = window.matchMedia('(prefers-color-scheme: dark)');
+          var handler = function() { updateToggleButton(); };
+          if (mql.addEventListener) {
+            mql.addEventListener('change', handler);
+          } else if (mql.addListener) {
+            mql.addListener(handler);
+          }
         }
       }
 
       // --- Color scheme picker ---
-      var schemeNames = {
-        default: 'Default',
-        teal: 'Teal',
-        plum: 'Plum',
-        rust: 'Rust',
-        slate: 'Slate'
-      };
+      if (BS5WCAG.getColorScheme && BS5WCAG.setColorScheme) {
+        var schemeNames = {
+          default: 'Default',
+          teal: 'Teal',
+          plum: 'Plum',
+          rust: 'Rust',
+          slate: 'Slate'
+        };
 
-      function updateSchemeUI(scheme) {
-        var label = document.getElementById('schemeLabel');
-        if (label) label.textContent = schemeNames[scheme] || 'Default';
+        var updateSchemeUI = function(scheme) {
+          var label = document.getElementById('schemeLabel');
+          if (label) label.textContent = schemeNames[scheme] || 'Default';
+
+          document.querySelectorAll('[data-scheme]').forEach(function(item) {
+            if (item.getAttribute('data-scheme') === scheme) {
+              item.classList.add('active');
+            } else {
+              item.classList.remove('active');
+            }
+          });
+        };
 
         document.querySelectorAll('[data-scheme]').forEach(function(item) {
-          if (item.getAttribute('data-scheme') === scheme) {
-            item.classList.add('active');
-          } else {
-            item.classList.remove('active');
-          }
+          item.addEventListener('click', function() {
+            var scheme = this.getAttribute('data-scheme');
+            BS5WCAG.setColorScheme(scheme);
+            updateSchemeUI(scheme);
+          });
         });
+
+        updateSchemeUI(BS5WCAG.getColorScheme());
       }
-
-      document.querySelectorAll('[data-scheme]').forEach(function(item) {
-        item.addEventListener('click', function() {
-          var scheme = this.getAttribute('data-scheme');
-          BS5WCAG.setColorScheme(scheme);
-          updateSchemeUI(scheme);
-        });
-      });
-
-      // Set initial scheme state
-      updateSchemeUI(BS5WCAG.getColorScheme());
     })();
   </script>
 </body>
