@@ -1,0 +1,33 @@
+// Scheme: Plum — rich, luxurious, creative
+// Requires _scheme-mixins.scss to be loaded first
+
+[data-bs-color-scheme="plum"] {
+  @include full-scheme-light(
+    $primary: #5e1a7e, $primary-hover: #4a1466, $primary-dark: #3d1055,
+    $secondary: #504050, $secondary-hover: #423542, $secondary-dark: #352b35,
+    $success: #2d6b2d, $success-hover: #235a23, $success-dark: #1a4a1a,
+    $danger: #8b0040, $danger-hover: #750035, $danger-dark: #60002b,
+    $warning: #6b4400, $warning-hover: #5a3800, $warning-dark: #4a2e00,
+    $info: #1a5a7e, $info-hover: #144b69, $info-dark: #0f3d57,
+    $focus-ring: #7a2ea0,
+    $alert-primary-bg: #e8ccf2, $alert-primary-border: #d199e5, $alert-primary-text: #3d1055,
+    $alert-success-bg: #d4f0d4, $alert-success-border: #a8e0a8, $alert-success-text: #1a4a1a,
+    $alert-danger-bg: #f5cce0, $alert-danger-border: #eb99c1, $alert-danger-text: #60002b,
+    $alert-warning-bg: #fff5cc, $alert-warning-border: #ffeb99, $alert-warning-text: #4a2e00,
+    $alert-info-bg: #cce5f2, $alert-info-border: #99cce5, $alert-info-text: #0f3d57
+  );
+}
+
+@include apply-dark-scheme("plum",
+  $primary-bg: #5e1a7e, $primary-bg-hover: #4a1466, $primary-link: #cc99e6, $primary-link-hover: #ddb3f0,
+  $secondary-bg: #504050, $secondary-bg-hover: #423542, $secondary-link: #b8a8b8, $secondary-link-hover: #ccbfcc,
+  $success-bg: #2d6b2d, $success-bg-hover: #235a23, $success-link: #85e085, $success-link-hover: #a0eca0,
+  $danger-bg: #8b0040, $danger-bg-hover: #750035, $danger-link: #ff80b3, $danger-link-hover: #ff99c2,
+  $warning-bg: #6b4400, $warning-bg-hover: #5a3800, $warning-link: #ffc266, $warning-link-hover: #ffd480,
+  $info-bg: #1a5a7e, $info-bg-hover: #144b69, $info-link: #80ccf0, $info-link-hover: #99d9f5,
+  $alert-primary-bg: #1f0a2e, $alert-primary-border: #3d1a5c, $alert-primary-text: #ddb3f0,
+  $alert-success-bg: #0a2e0a, $alert-success-border: #1a5c1a, $alert-success-text: #a0eca0,
+  $alert-danger-bg: #2e0a1a, $alert-danger-border: #5c1a3d, $alert-danger-text: #ff99c2,
+  $alert-warning-bg: #2e2200, $alert-warning-border: #5c4400, $alert-warning-text: #ffd480,
+  $alert-info-bg: #0a2938, $alert-info-border: #1a5570, $alert-info-text: #99d9f5
+);

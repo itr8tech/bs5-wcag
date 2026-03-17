@@ -1,0 +1,23 @@
+/*!
+ * BS5-WCAG Rust v0.1.0
+ * Core accessibility + dark mode + Rust color scheme
+ * Licensed under MIT
+ */
+
+// Core
+@import "_partials/variables";
+@import "_partials/functions";
+@import "mixins/mixins";
+@import "_partials/colors";
+@import "_partials/focus";
+@import "_partials/typography";
+@import "_partials/forms";
+@import "_partials/buttons";
+@import "_partials/navigation";
+@import "_partials/components";
+@import "_partials/utilities";
+@import "_partials/dark-mode";
+
+// Rust scheme only
+@import "_partials/scheme-mixins";
+@import "_partials/scheme-rust";

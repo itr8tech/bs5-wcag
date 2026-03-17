@@ -1,0 +1,23 @@
+/*!
+ * BS5-WCAG Core v0.1.0
+ * Core accessibility enhancements + dark mode, no color schemes
+ * Licensed under MIT
+ */
+
+// Configuration and variables
+@import "_partials/variables";
+@import "_partials/functions";
+@import "mixins/mixins";
+
+// Core accessibility enhancements
+@import "_partials/colors";
+@import "_partials/focus";
+@import "_partials/typography";
+@import "_partials/forms";
+@import "_partials/buttons";
+@import "_partials/navigation";
+@import "_partials/components";
+@import "_partials/utilities";
+
+// Dark mode support
+@import "_partials/dark-mode";

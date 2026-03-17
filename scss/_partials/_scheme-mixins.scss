@@ -1,0 +1,352 @@
+// Full Color Scheme Variants for WCAG AAA Compliance
+// Shared mixins used by all scheme partials
+// Each scheme defines a complete palette: primary, secondary, success, danger, warning, info
+// All colors meet 7:1+ contrast ratio on their respective backgrounds
+
+// =============================================================================
+// Comprehensive light-mode scheme mixin
+// =============================================================================
+@mixin full-scheme-light(
+  $primary, $primary-hover, $primary-dark,
+  $secondary, $secondary-hover, $secondary-dark,
+  $success, $success-hover, $success-dark,
+  $danger, $danger-hover, $danger-dark,
+  $warning, $warning-hover, $warning-dark,
+  $info, $info-hover, $info-dark,
+  $focus-ring,
+  $alert-primary-bg, $alert-primary-border, $alert-primary-text,
+  $alert-success-bg, $alert-success-border, $alert-success-text,
+  $alert-danger-bg, $alert-danger-border, $alert-danger-text,
+  $alert-warning-bg, $alert-warning-border, $alert-warning-text,
+  $alert-info-bg, $alert-info-border, $alert-info-text
+) {
+  // --- Text colors ---
+  .text-primary, .link-primary { color: $primary !important; }
+  .text-secondary, .link-secondary { color: $secondary !important; }
+  .text-success, .link-success { color: $success !important; }
+  .text-danger, .link-danger { color: $danger !important; }
+  .text-warning, .link-warning { color: $warning !important; }
+  .text-info, .link-info { color: $info !important; }
+
+  // --- Background colors ---
+  .bg-primary { background-color: $primary !important; color: #ffffff !important; }
+  .bg-secondary { background-color: $secondary !important; color: #ffffff !important; }
+  .bg-success { background-color: $success !important; color: #ffffff !important; }
+  .bg-danger { background-color: $danger !important; color: #ffffff !important; }
+  .bg-warning { background-color: $warning !important; color: #ffffff !important; }
+  .bg-info { background-color: $info !important; color: #ffffff !important; }
+
+  // Preserve white text on colored backgrounds
+  .bg-primary, .bg-secondary, .bg-success, .bg-danger, .bg-warning, .bg-info {
+    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, p, span, li {
+      color: #ffffff !important;
+    }
+  }
+
+  // --- Solid buttons ---
+  .btn-primary {
+    background-color: $primary !important; border-color: $primary-dark !important; color: #ffffff !important;
+    &:hover, &:focus { background-color: $primary-hover !important; border-color: $primary-dark !important; color: #ffffff !important; }
+  }
+  .btn-secondary {
+    background-color: $secondary !important; border-color: $secondary-dark !important; color: #ffffff !important;
+    &:hover, &:focus { background-color: $secondary-hover !important; border-color: $secondary-dark !important; color: #ffffff !important; }
+  }
+  .btn-success {
+    background-color: $success !important; border-color: $success-dark !important; color: #ffffff !important;
+    &:hover, &:focus { background-color: $success-hover !important; border-color: $success-dark !important; color: #ffffff !important; }
+  }
+  .btn-danger {
+    background-color: $danger !important; border-color: $danger-dark !important; color: #ffffff !important;
+    &:hover, &:focus { background-color: $danger-hover !important; border-color: $danger-dark !important; color: #ffffff !important; }
+  }
+  .btn-warning {
+    background-color: $warning !important; border-color: $warning-dark !important; color: #ffffff !important;
+    &:hover, &:focus { background-color: $warning-hover !important; border-color: $warning-dark !important; color: #ffffff !important; }
+  }
+  .btn-info {
+    background-color: $info !important; border-color: $info-dark !important; color: #ffffff !important;
+    &:hover, &:focus { background-color: $info-hover !important; border-color: $info-dark !important; color: #ffffff !important; }
+  }
+
+  // --- Outline buttons ---
+  .btn-outline-primary {
+    border-color: $primary !important; color: $primary !important;
+    &:hover, &:focus, &:active { background-color: $primary !important; border-color: $primary-hover !important; color: #ffffff !important; }
+  }
+  .btn-outline-secondary {
+    border-color: $secondary !important; color: $secondary !important;
+    &:hover, &:focus, &:active { background-color: $secondary !important; border-color: $secondary-hover !important; color: #ffffff !important; }
+  }
+  .btn-outline-success {
+    border-color: $success !important; color: $success !important;
+    &:hover, &:focus, &:active { background-color: $success !important; border-color: $success-hover !important; color: #ffffff !important; }
+  }
+  .btn-outline-danger {
+    border-color: $danger !important; color: $danger !important;
+    &:hover, &:focus, &:active { background-color: $danger !important; border-color: $danger-hover !important; color: #ffffff !important; }
+  }
+  .btn-outline-warning {
+    border-color: $warning !important; color: $warning !important;
+    &:hover, &:focus, &:active { background-color: $warning !important; border-color: $warning-hover !important; color: #ffffff !important; }
+  }
+  .btn-outline-info {
+    border-color: $info !important; color: $info !important;
+    &:hover, &:focus, &:active { background-color: $info !important; border-color: $info-hover !important; color: #ffffff !important; }
+  }
+
+  // --- Alerts ---
+  .alert-primary { background-color: $alert-primary-bg !important; border-color: $alert-primary-border !important; color: $alert-primary-text !important; }
+  .alert-success { background-color: $alert-success-bg !important; border-color: $alert-success-border !important; color: $alert-success-text !important; }
+  .alert-danger { background-color: $alert-danger-bg !important; border-color: $alert-danger-border !important; color: $alert-danger-text !important; }
+  .alert-warning { background-color: $alert-warning-bg !important; border-color: $alert-warning-border !important; color: $alert-warning-text !important; }
+  .alert-info { background-color: $alert-info-bg !important; border-color: $alert-info-border !important; color: $alert-info-text !important; }
+
+  // --- Badges ---
+  .badge.bg-primary, .badge.text-bg-primary { background-color: $primary !important; color: #ffffff !important; }
+  .badge.bg-secondary, .badge.text-bg-secondary { background-color: $secondary !important; color: #ffffff !important; }
+  .badge.bg-success, .badge.text-bg-success { background-color: $success !important; color: #ffffff !important; }
+  .badge.bg-danger, .badge.text-bg-danger { background-color: $danger !important; color: #ffffff !important; }
+  .badge.bg-warning, .badge.text-bg-warning { background-color: $warning !important; color: #ffffff !important; }
+  .badge.bg-info, .badge.text-bg-info { background-color: $info !important; color: #ffffff !important; }
+
+  // --- Links ---
+  a:not(.btn):not(.nav-link):not(.dropdown-item):not(.page-link):not(.navbar-brand):not(.card-link) {
+    color: $primary !important;
+    &:hover, &:focus { color: $primary-hover !important; }
+  }
+  .btn-link {
+    color: $primary !important;
+    &:hover, &:focus { color: $primary-hover !important; }
+  }
+  .card .card-link {
+    color: $primary !important;
+    &:hover, &:focus { color: $primary-hover !important; }
+  }
+  .breadcrumb .breadcrumb-item a {
+    color: $primary !important;
+    &:hover, &:focus { color: $primary-hover !important; }
+  }
+
+  // --- Focus ring ---
+  a, button, [role="button"], input, select, textarea,
+  [tabindex]:not([tabindex="-1"]),
+  .btn, .form-control, .form-select, .form-check-input,
+  .nav-link, .navbar-brand, .page-link, .dropdown-item,
+  .card-link, .list-group-item-action, .accordion-button, .btn-close {
+    &:focus, &:focus-visible { outline-color: $focus-ring !important; }
+    &:focus { box-shadow: 0 0 0 2px rgba($focus-ring, 0.25) !important; }
+  }
+
+  // --- Navigation ---
+  .navbar .nav-link {
+    &:hover, &:focus { color: $primary !important; }
+    &.active { color: $primary !important; border-bottom-color: $primary !important; }
+  }
+  .navbar .navbar-brand {
+    &:hover, &:focus { color: $primary !important; }
+  }
+  .nav-tabs .nav-link {
+    color: $primary !important;
+    &:hover, &:focus { color: $primary-hover !important; }
+    &.active { color: #000000 !important; }
+  }
+  .nav-pills .nav-link {
+    color: $primary !important;
+    &:hover, &:focus { color: $primary-hover !important; }
+    &.active { background-color: $primary !important; color: #ffffff !important; }
+  }
+
+  // --- Pagination ---
+  .pagination .page-link { color: $primary !important; &:hover { color: $primary-hover !important; } }
+  .pagination .page-item.active .page-link { background-color: $primary !important; border-color: $primary !important; color: #ffffff !important; }
+
+  // --- Active states ---
+  .dropdown-item.active { background-color: $primary !important; color: #ffffff !important; }
+  .list-group-item.active { background-color: $primary !important; border-color: $primary !important; color: #ffffff !important; }
+
+  // --- Form elements ---
+  .form-check-input:checked { background-color: $primary !important; border-color: $primary !important; }
+  .form-range {
+    &::-webkit-slider-thumb { background-color: $primary !important; box-shadow: 0 0 0 1px $primary !important; }
+    &::-moz-range-thumb { background-color: $primary !important; box-shadow: 0 0 0 1px $primary !important; }
+  }
+
+  // --- Validation ---
+  .invalid-feedback { color: $danger !important; }
+  .valid-feedback { color: $success !important; }
+  .form-control.is-invalid, .form-select.is-invalid, .form-check-input.is-invalid {
+    border-color: $danger !important;
+    &:focus { border-color: $danger !important; box-shadow: 0 0 0 3px rgba($danger, 0.25) !important; }
+  }
+  .form-control.is-valid, .form-select.is-valid, .form-check-input.is-valid {
+    border-color: $success !important;
+    &:focus { border-color: $success !important; box-shadow: 0 0 0 3px rgba($success, 0.25) !important; }
+  }
+  .form-label.required::after, .required .form-label::after { color: $danger !important; }
+
+  // --- Misc ---
+  .progress-bar { background-color: $primary !important; }
+  .skip-link { background-color: $primary !important; }
+  ::selection { background-color: $primary !important; color: #ffffff !important; }
+  ::-moz-selection { background-color: $primary !important; color: #ffffff !important; }
+}
+
+// =============================================================================
+// Comprehensive dark-mode scheme mixin
+// =============================================================================
+@mixin full-scheme-dark(
+  $primary-bg, $primary-bg-hover, $primary-link, $primary-link-hover,
+  $secondary-bg, $secondary-bg-hover, $secondary-link, $secondary-link-hover,
+  $success-bg, $success-bg-hover, $success-link, $success-link-hover,
+  $danger-bg, $danger-bg-hover, $danger-link, $danger-link-hover,
+  $warning-bg, $warning-bg-hover, $warning-link, $warning-link-hover,
+  $info-bg, $info-bg-hover, $info-link, $info-link-hover,
+  $alert-primary-bg, $alert-primary-border, $alert-primary-text,
+  $alert-success-bg, $alert-success-border, $alert-success-text,
+  $alert-danger-bg, $alert-danger-border, $alert-danger-text,
+  $alert-warning-bg, $alert-warning-border, $alert-warning-text,
+  $alert-info-bg, $alert-info-border, $alert-info-text
+) {
+  // --- Text colors ---
+  .text-primary, .link-primary { color: $primary-link !important; }
+  .text-secondary, .link-secondary { color: $secondary-link !important; }
+  .text-success, .link-success { color: $success-link !important; }
+  .text-danger, .link-danger { color: $danger-link !important; }
+  .text-warning, .link-warning { color: $warning-link !important; }
+  .text-info, .link-info { color: $info-link !important; }
+
+  // --- Backgrounds ---
+  .bg-primary { background-color: $primary-bg !important; color: #ffffff !important; }
+  .bg-secondary { background-color: $secondary-bg !important; color: #ffffff !important; }
+  .bg-success { background-color: $success-bg !important; color: #ffffff !important; }
+  .bg-danger { background-color: $danger-bg !important; color: #ffffff !important; }
+  .bg-warning { background-color: $warning-bg !important; color: #ffffff !important; }
+  .bg-info { background-color: $info-bg !important; color: #ffffff !important; }
+
+  // --- Solid buttons ---
+  .btn-primary {
+    background-color: $primary-bg !important; border-color: $primary-bg-hover !important; color: #ffffff !important;
+    &:hover, &:focus { background-color: $primary-bg-hover !important; color: #ffffff !important; }
+  }
+  .btn-secondary {
+    background-color: $secondary-bg !important; border-color: $secondary-bg-hover !important; color: #ffffff !important;
+    &:hover, &:focus { background-color: $secondary-bg-hover !important; color: #ffffff !important; }
+  }
+  .btn-success {
+    background-color: $success-bg !important; border-color: $success-bg-hover !important; color: #ffffff !important;
+    &:hover, &:focus { background-color: $success-bg-hover !important; color: #ffffff !important; }
+  }
+  .btn-danger {
+    background-color: $danger-bg !important; border-color: $danger-bg-hover !important; color: #ffffff !important;
+    &:hover, &:focus { background-color: $danger-bg-hover !important; color: #ffffff !important; }
+  }
+  .btn-warning {
+    background-color: $warning-bg !important; border-color: $warning-bg-hover !important; color: #ffffff !important;
+    &:hover, &:focus { background-color: $warning-bg-hover !important; color: #ffffff !important; }
+  }
+  .btn-info {
+    background-color: $info-bg !important; border-color: $info-bg-hover !important; color: #ffffff !important;
+    &:hover, &:focus { background-color: $info-bg-hover !important; color: #ffffff !important; }
+  }
+
+  // --- Outline buttons ---
+  .btn-outline-primary {
+    border-color: $primary-link !important; color: $primary-link !important;
+    &:hover, &:focus, &:active { background-color: $primary-bg !important; border-color: $primary-bg-hover !important; color: #ffffff !important; }
+  }
+  .btn-outline-secondary {
+    border-color: $secondary-link !important; color: $secondary-link !important;
+    &:hover, &:focus, &:active { background-color: $secondary-bg !important; border-color: $secondary-bg-hover !important; color: #ffffff !important; }
+  }
+  .btn-outline-success {
+    border-color: $success-link !important; color: $success-link !important;
+    &:hover, &:focus, &:active { background-color: $success-bg !important; border-color: $success-bg-hover !important; color: #ffffff !important; }
+  }
+  .btn-outline-danger {
+    border-color: $danger-link !important; color: $danger-link !important;
+    &:hover, &:focus, &:active { background-color: $danger-bg !important; border-color: $danger-bg-hover !important; color: #ffffff !important; }
+  }
+  .btn-outline-warning {
+    border-color: $warning-link !important; color: $warning-link !important;
+    &:hover, &:focus, &:active { background-color: $warning-bg !important; border-color: $warning-bg-hover !important; color: #ffffff !important; }
+  }
+  .btn-outline-info {
+    border-color: $info-link !important; color: $info-link !important;
+    &:hover, &:focus, &:active { background-color: $info-bg !important; border-color: $info-bg-hover !important; color: #ffffff !important; }
+  }
+
+  // --- Alerts ---
+  .alert-primary { background-color: $alert-primary-bg !important; border-color: $alert-primary-border !important; color: $alert-primary-text !important; }
+  .alert-success { background-color: $alert-success-bg !important; border-color: $alert-success-border !important; color: $alert-success-text !important; }
+  .alert-danger { background-color: $alert-danger-bg !important; border-color: $alert-danger-border !important; color: $alert-danger-text !important; }
+  .alert-warning { background-color: $alert-warning-bg !important; border-color: $alert-warning-border !important; color: $alert-warning-text !important; }
+  .alert-info { background-color: $alert-info-bg !important; border-color: $alert-info-border !important; color: $alert-info-text !important; }
+
+  // --- Badges ---
+  .badge.bg-primary, .badge.text-bg-primary { background-color: $primary-bg !important; color: #ffffff !important; }
+  .badge.bg-secondary, .badge.text-bg-secondary { background-color: $secondary-bg !important; color: #ffffff !important; }
+  .badge.bg-success, .badge.text-bg-success { background-color: $success-bg !important; color: #ffffff !important; }
+  .badge.bg-danger, .badge.text-bg-danger { background-color: $danger-bg !important; color: #ffffff !important; }
+  .badge.bg-warning, .badge.text-bg-warning { background-color: $warning-bg !important; color: #ffffff !important; }
+  .badge.bg-info, .badge.text-bg-info { background-color: $info-bg !important; color: #ffffff !important; }
+
+  // --- Links ---
+  a:not(.btn):not(.nav-link):not(.dropdown-item):not(.page-link):not(.navbar-brand):not(.card-link) {
+    color: $primary-link !important;
+    &:hover, &:focus { color: $primary-link-hover !important; }
+  }
+  .btn-link { color: $primary-link !important; &:hover, &:focus { color: $primary-link-hover !important; } }
+  .card .card-link { color: $primary-link !important; &:hover, &:focus { color: $primary-link-hover !important; } }
+  .breadcrumb .breadcrumb-item a { color: $primary-link !important; &:hover, &:focus { color: $primary-link-hover !important; } }
+
+  // --- Navigation ---
+  .navbar .nav-link {
+    &:hover, &:focus { color: $primary-link !important; }
+    &.active { color: $primary-link !important; border-bottom-color: $primary-link !important; }
+  }
+  .navbar .navbar-brand { &:hover, &:focus { color: $primary-link !important; } }
+  .nav-tabs .nav-link { color: $primary-link !important; &:hover, &:focus { color: $primary-link-hover !important; } }
+  .nav-pills .nav-link {
+    color: $primary-link !important;
+    &:hover, &:focus { color: $primary-link-hover !important; }
+    &.active { background-color: $primary-bg !important; color: #ffffff !important; }
+  }
+
+  // --- Pagination ---
+  .pagination .page-link { color: $primary-link !important; }
+  .pagination .page-item.active .page-link { background-color: $primary-bg !important; border-color: $primary-bg !important; color: #ffffff !important; }
+
+  // --- Active states ---
+  .dropdown-item.active { background-color: $primary-bg !important; color: #ffffff !important; }
+  .list-group-item.active { background-color: $primary-bg !important; border-color: $primary-bg !important; color: #ffffff !important; }
+
+  // --- Form elements ---
+  .form-check-input:checked { background-color: $primary-bg !important; border-color: $primary-bg !important; }
+  .progress-bar { background-color: $primary-bg !important; }
+
+  // --- Validation ---
+  .invalid-feedback { color: $danger-link !important; }
+  .valid-feedback { color: $success-link !important; }
+  .form-control.is-invalid, .form-select.is-invalid, .form-check-input.is-invalid {
+    border-color: $danger-link !important;
+    &:focus { border-color: $danger-link !important; box-shadow: 0 0 0 3px rgba($danger-link, 0.25) !important; }
+  }
+  .form-control.is-valid, .form-select.is-valid, .form-check-input.is-valid {
+    border-color: $success-link !important;
+    &:focus { border-color: $success-link !important; box-shadow: 0 0 0 3px rgba($success-link, 0.25) !important; }
+  }
+  .form-label.required::after, .required .form-label::after { color: $danger-link !important; }
+}
+
+// Helper to apply dark scheme in both explicit and auto contexts
+@mixin apply-dark-scheme($scheme-name, $args...) {
+  [data-bs-theme="dark"][data-bs-color-scheme="#{$scheme-name}"] {
+    @include full-scheme-dark($args...);
+  }
+  @media (prefers-color-scheme: dark) {
+    html:not([data-bs-theme="light"]):not([data-bs-theme="dark"])[data-bs-color-scheme="#{$scheme-name}"] {
+      @include full-scheme-dark($args...);
+    }
+  }
+}

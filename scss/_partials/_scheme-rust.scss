@@ -1,0 +1,33 @@
+// Scheme: Rust — warm, earthy, organic
+// Requires _scheme-mixins.scss to be loaded first
+
+[data-bs-color-scheme="rust"] {
+  @include full-scheme-light(
+    $primary: #8b3a00, $primary-hover: #732f00, $primary-dark: #5c2600,
+    $secondary: #555045, $secondary-hover: #474238, $secondary-dark: #3a362d,
+    $success: #3d6b1a, $success-hover: #305a11, $success-dark: #254a0a,
+    $danger: #8b1a2d, $danger-hover: #751525, $danger-dark: #60101d,
+    $warning: #6b5500, $warning-hover: #5a4700, $warning-dark: #4a3a00,
+    $info: #3a5068, $info-hover: #2e4053, $info-dark: #243344,
+    $focus-ring: #a04400,
+    $alert-primary-bg: #f5e0cc, $alert-primary-border: #ebc299, $alert-primary-text: #5c2600,
+    $alert-success-bg: #ddf0cc, $alert-success-border: #bbe099, $alert-success-text: #254a0a,
+    $alert-danger-bg: #f5ccdd, $alert-danger-border: #eb99b8, $alert-danger-text: #60101d,
+    $alert-warning-bg: #fff8cc, $alert-warning-border: #fff199, $alert-warning-text: #4a3a00,
+    $alert-info-bg: #d9e5f0, $alert-info-border: #b3cce0, $alert-info-text: #243344
+  );
+}
+
+@include apply-dark-scheme("rust",
+  $primary-bg: #8b3a00, $primary-bg-hover: #732f00, $primary-link: #ffb380, $primary-link-hover: #ffc699,
+  $secondary-bg: #555045, $secondary-bg-hover: #474238, $secondary-link: #bcb7ac, $secondary-link-hover: #d0ccc2,
+  $success-bg: #3d6b1a, $success-bg-hover: #305a11, $success-link: #a8e080, $success-link-hover: #beec99,
+  $danger-bg: #8b1a2d, $danger-bg-hover: #751525, $danger-link: #ff8099, $danger-link-hover: #ff99b3,
+  $warning-bg: #6b5500, $warning-bg-hover: #5a4700, $warning-link: #ffd466, $warning-link-hover: #ffe080,
+  $info-bg: #3a5068, $info-bg-hover: #2e4053, $info-link: #9ebdd6, $info-link-hover: #b3cde0,
+  $alert-primary-bg: #2e1a0a, $alert-primary-border: #5c3a1a, $alert-primary-text: #ffc699,
+  $alert-success-bg: #142e0a, $alert-success-border: #2e5c1a, $alert-success-text: #beec99,
+  $alert-danger-bg: #2e0a14, $alert-danger-border: #5c1a2e, $alert-danger-text: #ff99b3,
+  $alert-warning-bg: #2e2600, $alert-warning-border: #5c4d00, $alert-warning-text: #ffe080,
+  $alert-info-bg: #0f1f2e, $alert-info-border: #1f3d5c, $alert-info-text: #b3cde0
+);
