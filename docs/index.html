@@ -339,6 +339,8 @@
   <!-- Dark mode toggle for demo -->
   <script>
     (function() {
+      if (typeof BS5WCAG === 'undefined' || !BS5WCAG.getColorMode) return;
+
       function updateToggleButton() {
         var mode = BS5WCAG.getColorMode();
         var icon = document.getElementById('themeIcon');
@@ -367,9 +369,13 @@
 
       // Update on system preference change
       if (window.matchMedia) {
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
-          updateToggleButton();
-        });
+        var mql = window.matchMedia('(prefers-color-scheme: dark)');
+        var handler = function() { updateToggleButton(); };
+        if (mql.addEventListener) {
+          mql.addEventListener('change', handler);
+        } else if (mql.addListener) {
+          mql.addListener(handler);
+        }
       }
     })();
   </script>

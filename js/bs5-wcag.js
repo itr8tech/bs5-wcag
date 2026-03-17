@@ -53,14 +53,21 @@
 
       // Listen for system preference changes (only when no explicit override)
       if (window.matchMedia) {
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        var mql = window.matchMedia('(prefers-color-scheme: dark)');
+        var handler = function(e) {
           var currentStored = null;
           try { currentStored = localStorage.getItem('bs5-wcag-theme'); } catch(ex) { /* noop */ }
           // Only auto-switch if user hasn't manually chosen a theme
           if (!currentStored) {
             html.removeAttribute('data-bs-theme');
           }
-        });
+        };
+        // Safari <14 only supports addListener
+        if (mql.addEventListener) {
+          mql.addEventListener('change', handler);
+        } else if (mql.addListener) {
+          mql.addListener(handler);
+        }
       }
     },
 
@@ -435,14 +442,25 @@
     }
   };
 
-  // Auto-initialize when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-      BS5WCAG.init();
-    });
-  } else {
-    BS5WCAG.init();
-  }
-
   return BS5WCAG;
 }));
+
+// Auto-initialize when DOM is ready
+// Runs after the UMD assignment so window.BS5WCAG is always available
+(function() {
+  function doInit() {
+    if (typeof BS5WCAG !== 'undefined' && BS5WCAG.init) {
+      try {
+        BS5WCAG.init();
+      } catch(e) {
+        console.error('BS5-WCAG initialization error:', e);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', doInit);
+  } else {
+    doInit();
+  }
+})();
