@@ -51,6 +51,13 @@
       }
       // Otherwise, leave no attribute set so the CSS @media query handles it automatically
 
+      // Restore saved color scheme
+      var savedScheme = null;
+      try { savedScheme = localStorage.getItem('bs5-wcag-color-scheme'); } catch(e) { /* noop */ }
+      if (savedScheme && this.colorSchemes.indexOf(savedScheme) !== -1) {
+        html.setAttribute('data-bs-color-scheme', savedScheme);
+      }
+
       // Listen for system preference changes (only when no explicit override)
       if (window.matchMedia) {
         var mql = window.matchMedia('(prefers-color-scheme: dark)');
@@ -112,6 +119,37 @@
       var next = current === 'dark' ? 'light' : 'dark';
       this.setColorMode(next);
       return next;
+    },
+
+    /**
+     * Available color schemes
+     */
+    colorSchemes: ['default', 'teal', 'plum', 'rust', 'slate'],
+
+    /**
+     * Get the current color scheme
+     * @returns {string} scheme name or 'default'
+     */
+    getColorScheme: function() {
+      return document.documentElement.getAttribute('data-bs-color-scheme') || 'default';
+    },
+
+    /**
+     * Set the color scheme
+     * @param {string} scheme - 'default', 'teal', 'plum', 'rust', or 'slate'
+     */
+    setColorScheme: function(scheme) {
+      var html = document.documentElement;
+
+      if (!scheme || scheme === 'default') {
+        html.removeAttribute('data-bs-color-scheme');
+        try { localStorage.removeItem('bs5-wcag-color-scheme'); } catch(e) { /* noop */ }
+      } else {
+        html.setAttribute('data-bs-color-scheme', scheme);
+        try { localStorage.setItem('bs5-wcag-color-scheme', scheme); } catch(e) { /* noop */ }
+      }
+
+      this.announce('Color scheme set to ' + (scheme || 'default'));
     },
 
     /**

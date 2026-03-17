@@ -12,9 +12,6 @@
   <link href="dist/css/bs5-wcag.css" rel="stylesheet">
 
   <style>
-    body {
-      padding-top: 1rem;
-    }
     .demo-section {
       margin-bottom: 3rem;
       padding-bottom: 2rem;
@@ -31,10 +28,8 @@
         border-bottom-color: #495057;
       }
     }
-    .theme-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
+    .navbar {
+      margin-bottom: 2rem !important;
     }
   </style>
 </head>
@@ -65,12 +60,25 @@
             <a class="nav-link" href="#components">Components</a>
           </li>
           <li class="nav-item ms-lg-3 d-flex align-items-center">
-            <div class="theme-toggle">
-              <button type="button" class="btn btn-outline-secondary btn-sm" id="themeToggle"
-                      aria-label="Toggle dark mode">
-                <span id="themeIcon" aria-hidden="true">&#9790;</span>
-                <span id="themeLabel">Dark</span>
+            <button type="button" class="btn btn-outline-secondary btn-sm" id="themeToggle"
+                    aria-label="Toggle dark mode">
+              <span id="themeIcon" aria-hidden="true">&#9790;</span>
+              <span id="themeLabel">Dark</span>
+            </button>
+          </li>
+          <li class="nav-item ms-lg-2 d-flex align-items-center">
+            <div class="dropdown">
+              <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button"
+                      data-bs-toggle="dropdown" aria-expanded="false" aria-label="Choose color scheme">
+                <span id="schemeLabel">Default</span>
               </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><button class="dropdown-item active" type="button" data-scheme="default">Default (Blue)</button></li>
+                <li><button class="dropdown-item" type="button" data-scheme="teal">Teal</button></li>
+                <li><button class="dropdown-item" type="button" data-scheme="plum">Plum</button></li>
+                <li><button class="dropdown-item" type="button" data-scheme="rust">Rust</button></li>
+                <li><button class="dropdown-item" type="button" data-scheme="slate">Slate</button></li>
+              </ul>
             </div>
           </li>
         </ul>
@@ -336,21 +344,22 @@
   <!-- BS5-WCAG Enhancement JavaScript -->
   <script src="dist/js/bs5-wcag.js"></script>
 
-  <!-- Dark mode toggle for demo -->
+  <!-- Theme toggle and color scheme picker -->
   <script>
     (function() {
       if (typeof BS5WCAG === 'undefined' || !BS5WCAG.getColorMode) return;
 
+      // --- Dark / Light toggle ---
       function updateToggleButton() {
         var mode = BS5WCAG.getColorMode();
         var icon = document.getElementById('themeIcon');
         var label = document.getElementById('themeLabel');
         if (icon && label) {
           if (mode === 'dark') {
-            icon.textContent = '\u2600'; // sun
+            icon.textContent = '\u2600';
             label.textContent = 'Light';
           } else {
-            icon.textContent = '\u263E'; // moon
+            icon.textContent = '\u263E';
             label.textContent = 'Dark';
           }
         }
@@ -364,10 +373,8 @@
         });
       }
 
-      // Set initial state
       updateToggleButton();
 
-      // Update on system preference change
       if (window.matchMedia) {
         var mql = window.matchMedia('(prefers-color-scheme: dark)');
         var handler = function() { updateToggleButton(); };
@@ -377,6 +384,39 @@
           mql.addListener(handler);
         }
       }
+
+      // --- Color scheme picker ---
+      var schemeNames = {
+        default: 'Default',
+        teal: 'Teal',
+        plum: 'Plum',
+        rust: 'Rust',
+        slate: 'Slate'
+      };
+
+      function updateSchemeUI(scheme) {
+        var label = document.getElementById('schemeLabel');
+        if (label) label.textContent = schemeNames[scheme] || 'Default';
+
+        document.querySelectorAll('[data-scheme]').forEach(function(item) {
+          if (item.getAttribute('data-scheme') === scheme) {
+            item.classList.add('active');
+          } else {
+            item.classList.remove('active');
+          }
+        });
+      }
+
+      document.querySelectorAll('[data-scheme]').forEach(function(item) {
+        item.addEventListener('click', function() {
+          var scheme = this.getAttribute('data-scheme');
+          BS5WCAG.setColorScheme(scheme);
+          updateSchemeUI(scheme);
+        });
+      });
+
+      // Set initial scheme state
+      updateSchemeUI(BS5WCAG.getColorScheme());
     })();
   </script>
 </body>

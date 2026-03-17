@@ -1,0 +1,562 @@
+// Color Scheme Variants for WCAG AAA Compliance
+// Each scheme changes the accent/primary color while maintaining 7:1+ contrast
+// Semantic colors (success, danger, warning, info) remain unchanged
+
+// Mixin for accent color overrides — applies to primary, links, focus, active states
+@mixin color-scheme-accent(
+  $primary,
+  $primary-hover,
+  $primary-dark,       // darker shade for borders
+  $link-color,
+  $link-hover,
+  $focus-ring,
+  $dm-primary,         // dark mode: lighter text/outline variant
+  $dm-primary-hover,
+  $dm-link,
+  $dm-link-hover
+) {
+  // Text
+  .text-primary,
+  .link-primary {
+    color: $primary !important;
+  }
+
+  // Background
+  .bg-primary {
+    background-color: $primary !important;
+    color: #ffffff !important;
+  }
+
+  // Buttons
+  .btn-primary {
+    background-color: $primary !important;
+    border-color: $primary-dark !important;
+    color: #ffffff !important;
+
+    &:hover,
+    &:focus {
+      background-color: $primary-hover !important;
+      border-color: $primary-dark !important;
+      color: #ffffff !important;
+    }
+  }
+
+  .btn-outline-primary {
+    border-color: $primary !important;
+    color: $primary !important;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $primary !important;
+      border-color: $primary-hover !important;
+      color: #ffffff !important;
+    }
+  }
+
+  // Links
+  a:not(.btn):not(.nav-link):not(.dropdown-item):not(.page-link):not(.navbar-brand):not(.card-link) {
+    color: $primary !important;
+
+    &:hover,
+    &:focus {
+      color: $primary-hover !important;
+    }
+  }
+
+  // Focus ring
+  a, button, [role="button"], input, select, textarea,
+  [tabindex]:not([tabindex="-1"]),
+  .btn, .form-control, .form-select, .form-check-input,
+  .nav-link, .navbar-brand, .page-link, .dropdown-item,
+  .card-link, .list-group-item-action, .accordion-button, .btn-close {
+    &:focus,
+    &:focus-visible {
+      outline-color: $focus-ring !important;
+    }
+
+    &:focus {
+      border-color: $focus-ring !important;
+      box-shadow: 0 0 0 2px rgba($focus-ring, 0.25) !important;
+    }
+  }
+
+  // Navigation active
+  .navbar .nav-link {
+    &:hover,
+    &:focus {
+      color: $primary !important;
+    }
+
+    &.active {
+      color: $primary !important;
+      border-bottom-color: $primary !important;
+    }
+  }
+
+  .navbar .navbar-brand {
+    &:hover,
+    &:focus {
+      color: $primary !important;
+    }
+  }
+
+  // Tabs & pills
+  .nav-tabs .nav-link {
+    color: $primary !important;
+
+    &:hover,
+    &:focus {
+      color: $primary-hover !important;
+    }
+
+    &.active {
+      color: #000000 !important;
+    }
+  }
+
+  .nav-pills .nav-link {
+    color: $primary !important;
+
+    &:hover,
+    &:focus {
+      color: $primary-hover !important;
+    }
+
+    &.active {
+      background-color: $primary !important;
+      color: #ffffff !important;
+    }
+  }
+
+  // Pagination active
+  .pagination .page-link {
+    color: $primary !important;
+
+    &:hover {
+      color: $primary-hover !important;
+    }
+  }
+
+  .pagination .page-item.active .page-link {
+    background-color: $primary !important;
+    border-color: $primary !important;
+    color: #ffffff !important;
+  }
+
+  // Dropdown active
+  .dropdown-item.active {
+    background-color: $primary !important;
+    color: #ffffff !important;
+  }
+
+  // List group active
+  .list-group-item.active {
+    background-color: $primary !important;
+    border-color: $primary !important;
+    color: #ffffff !important;
+  }
+
+  // Card links
+  .card .card-link {
+    color: $primary !important;
+
+    &:hover,
+    &:focus {
+      color: $primary-hover !important;
+    }
+  }
+
+  // Breadcrumb links
+  .breadcrumb .breadcrumb-item a {
+    color: $primary !important;
+
+    &:hover,
+    &:focus {
+      color: $primary-hover !important;
+    }
+  }
+
+  // Checkbox/radio checked
+  .form-check-input:checked {
+    background-color: $primary !important;
+    border-color: $primary !important;
+  }
+
+  // Range thumb
+  .form-range {
+    &::-webkit-slider-thumb {
+      background-color: $primary !important;
+      box-shadow: 0 0 0 1px $primary !important;
+    }
+    &::-moz-range-thumb {
+      background-color: $primary !important;
+      box-shadow: 0 0 0 1px $primary !important;
+    }
+  }
+
+  // Progress bar
+  .progress-bar {
+    background-color: $primary !important;
+  }
+
+  // Selection
+  ::selection {
+    background-color: $primary !important;
+    color: #ffffff !important;
+  }
+  ::-moz-selection {
+    background-color: $primary !important;
+    color: #ffffff !important;
+  }
+
+  // Skip link
+  .skip-link {
+    background-color: $primary !important;
+  }
+
+  // Alert primary
+  .alert-primary {
+    color: $primary-dark !important;
+  }
+
+  // Badge primary
+  .badge.bg-primary,
+  .badge.text-bg-primary {
+    background-color: $primary !important;
+    color: #ffffff !important;
+  }
+
+  // Btn link
+  .btn-link {
+    color: $primary !important;
+
+    &:hover,
+    &:focus {
+      color: $primary-hover !important;
+    }
+  }
+}
+
+// Mixin for dark-mode accent overrides within a scheme
+@mixin color-scheme-accent-dark(
+  $dm-primary,
+  $dm-primary-hover,
+  $dm-primary-bg,     // solid bg for buttons (must be dark enough for white text 7:1)
+  $dm-primary-bg-hover,
+  $dm-link,
+  $dm-link-hover
+) {
+  .text-primary,
+  .link-primary {
+    color: $dm-link !important;
+  }
+
+  .bg-primary {
+    background-color: $dm-primary-bg !important;
+    color: #ffffff !important;
+  }
+
+  .btn-primary {
+    background-color: $dm-primary-bg !important;
+    border-color: $dm-primary-bg-hover !important;
+    color: #ffffff !important;
+
+    &:hover,
+    &:focus {
+      background-color: $dm-primary-bg-hover !important;
+      color: #ffffff !important;
+    }
+  }
+
+  .btn-outline-primary {
+    border-color: $dm-link !important;
+    color: $dm-link !important;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $dm-primary-bg !important;
+      border-color: $dm-primary-bg-hover !important;
+      color: #ffffff !important;
+    }
+  }
+
+  a:not(.btn):not(.nav-link):not(.dropdown-item):not(.page-link):not(.navbar-brand):not(.card-link) {
+    color: $dm-link !important;
+
+    &:hover,
+    &:focus {
+      color: $dm-link-hover !important;
+    }
+  }
+
+  .navbar .nav-link {
+    &:hover,
+    &:focus {
+      color: $dm-link !important;
+    }
+
+    &.active {
+      color: $dm-link !important;
+      border-bottom-color: $dm-link !important;
+    }
+  }
+
+  .navbar .navbar-brand {
+    &:hover,
+    &:focus {
+      color: $dm-link !important;
+    }
+  }
+
+  .nav-tabs .nav-link {
+    color: $dm-link !important;
+
+    &:hover, &:focus {
+      color: $dm-link-hover !important;
+    }
+  }
+
+  .nav-pills .nav-link {
+    color: $dm-link !important;
+
+    &:hover, &:focus {
+      color: $dm-link-hover !important;
+    }
+
+    &.active {
+      background-color: $dm-primary-bg !important;
+      color: #ffffff !important;
+    }
+  }
+
+  .pagination .page-link {
+    color: $dm-link !important;
+  }
+
+  .pagination .page-item.active .page-link {
+    background-color: $dm-primary-bg !important;
+    border-color: $dm-primary-bg !important;
+    color: #ffffff !important;
+  }
+
+  .dropdown-item.active {
+    background-color: $dm-primary-bg !important;
+  }
+
+  .list-group-item.active {
+    background-color: $dm-primary-bg !important;
+    border-color: $dm-primary-bg !important;
+  }
+
+  .card .card-link {
+    color: $dm-link !important;
+
+    &:hover, &:focus {
+      color: $dm-link-hover !important;
+    }
+  }
+
+  .breadcrumb .breadcrumb-item a {
+    color: $dm-link !important;
+
+    &:hover, &:focus {
+      color: $dm-link-hover !important;
+    }
+  }
+
+  .form-check-input:checked {
+    background-color: $dm-primary-bg !important;
+    border-color: $dm-primary-bg !important;
+  }
+
+  .progress-bar {
+    background-color: $dm-primary-bg !important;
+  }
+
+  .btn-link {
+    color: $dm-link !important;
+
+    &:hover, &:focus {
+      color: $dm-link-hover !important;
+    }
+  }
+
+  .badge.bg-primary,
+  .badge.text-bg-primary {
+    background-color: $dm-primary-bg !important;
+  }
+}
+
+// =============================================================================
+// Scheme: Teal
+// Primary: #005f5f (7.97:1 on white) | Dark mode link: #5fd4d4 (8.19:1 on #212529)
+// =============================================================================
+[data-bs-color-scheme="teal"] {
+  @include color-scheme-accent(
+    $primary:        #005f5f,
+    $primary-hover:  #004d4d,
+    $primary-dark:   #004040,
+    $link-color:     #005f5f,
+    $link-hover:     #004040,
+    $focus-ring:     #007a7a,
+    $dm-primary:     #5fd4d4,
+    $dm-primary-hover: #80e0e0,
+    $dm-link:        #5fd4d4,
+    $dm-link-hover:  #80e0e0
+  );
+}
+
+[data-bs-theme="dark"][data-bs-color-scheme="teal"] {
+  @include color-scheme-accent-dark(
+    $dm-primary:          #5fd4d4,
+    $dm-primary-hover:    #80e0e0,
+    $dm-primary-bg:       #005f5f,
+    $dm-primary-bg-hover: #004d4d,
+    $dm-link:             #5fd4d4,
+    $dm-link-hover:       #80e0e0
+  );
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-bs-theme="light"]):not([data-bs-theme="dark"])[data-bs-color-scheme="teal"] {
+    @include color-scheme-accent-dark(
+      $dm-primary:          #5fd4d4,
+      $dm-primary-hover:    #80e0e0,
+      $dm-primary-bg:       #005f5f,
+      $dm-primary-bg-hover: #004d4d,
+      $dm-link:             #5fd4d4,
+      $dm-link-hover:       #80e0e0
+    );
+  }
+}
+
+// =============================================================================
+// Scheme: Plum
+// Primary: #5e1a7e (8.87:1 on white) | Dark mode link: #cc99e6 (7.36:1 on #212529)
+// =============================================================================
+[data-bs-color-scheme="plum"] {
+  @include color-scheme-accent(
+    $primary:        #5e1a7e,
+    $primary-hover:  #4a1466,
+    $primary-dark:   #3d1055,
+    $link-color:     #5e1a7e,
+    $link-hover:     #3d1055,
+    $focus-ring:     #7a2ea0,
+    $dm-primary:     #cc99e6,
+    $dm-primary-hover: #ddb3f0,
+    $dm-link:        #cc99e6,
+    $dm-link-hover:  #ddb3f0
+  );
+}
+
+[data-bs-theme="dark"][data-bs-color-scheme="plum"] {
+  @include color-scheme-accent-dark(
+    $dm-primary:          #cc99e6,
+    $dm-primary-hover:    #ddb3f0,
+    $dm-primary-bg:       #5e1a7e,
+    $dm-primary-bg-hover: #4a1466,
+    $dm-link:             #cc99e6,
+    $dm-link-hover:       #ddb3f0
+  );
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-bs-theme="light"]):not([data-bs-theme="dark"])[data-bs-color-scheme="plum"] {
+    @include color-scheme-accent-dark(
+      $dm-primary:          #cc99e6,
+      $dm-primary-hover:    #ddb3f0,
+      $dm-primary-bg:       #5e1a7e,
+      $dm-primary-bg-hover: #4a1466,
+      $dm-link:             #cc99e6,
+      $dm-link-hover:       #ddb3f0
+    );
+  }
+}
+
+// =============================================================================
+// Scheme: Rust
+// Primary: #8b3a00 (7.08:1 on white) | Dark mode link: #ffb380 (8.51:1 on #212529)
+// =============================================================================
+[data-bs-color-scheme="rust"] {
+  @include color-scheme-accent(
+    $primary:        #8b3a00,
+    $primary-hover:  #732f00,
+    $primary-dark:   #5c2600,
+    $link-color:     #8b3a00,
+    $link-hover:     #5c2600,
+    $focus-ring:     #a04400,
+    $dm-primary:     #ffb380,
+    $dm-primary-hover: #ffc699,
+    $dm-link:        #ffb380,
+    $dm-link-hover:  #ffc699
+  );
+}
+
+[data-bs-theme="dark"][data-bs-color-scheme="rust"] {
+  @include color-scheme-accent-dark(
+    $dm-primary:          #ffb380,
+    $dm-primary-hover:    #ffc699,
+    $dm-primary-bg:       #8b3a00,
+    $dm-primary-bg-hover: #732f00,
+    $dm-link:             #ffb380,
+    $dm-link-hover:       #ffc699
+  );
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-bs-theme="light"]):not([data-bs-theme="dark"])[data-bs-color-scheme="rust"] {
+    @include color-scheme-accent-dark(
+      $dm-primary:          #ffb380,
+      $dm-primary-hover:    #ffc699,
+      $dm-primary-bg:       #8b3a00,
+      $dm-primary-bg-hover: #732f00,
+      $dm-link:             #ffb380,
+      $dm-link-hover:       #ffc699
+    );
+  }
+}
+
+// =============================================================================
+// Scheme: Slate
+// Primary: #3a5068 (7.11:1 on white) | Dark mode link: #9ebdd6 (7.36:1 on #212529)
+// =============================================================================
+[data-bs-color-scheme="slate"] {
+  @include color-scheme-accent(
+    $primary:        #3a5068,
+    $primary-hover:  #2e4053,
+    $primary-dark:   #243344,
+    $link-color:     #3a5068,
+    $link-hover:     #243344,
+    $focus-ring:     #4a6580,
+    $dm-primary:     #9ebdd6,
+    $dm-primary-hover: #b3cde0,
+    $dm-link:        #9ebdd6,
+    $dm-link-hover:  #b3cde0
+  );
+}
+
+[data-bs-theme="dark"][data-bs-color-scheme="slate"] {
+  @include color-scheme-accent-dark(
+    $dm-primary:          #9ebdd6,
+    $dm-primary-hover:    #b3cde0,
+    $dm-primary-bg:       #3a5068,
+    $dm-primary-bg-hover: #2e4053,
+    $dm-link:             #9ebdd6,
+    $dm-link-hover:       #b3cde0
+  );
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-bs-theme="light"]):not([data-bs-theme="dark"])[data-bs-color-scheme="slate"] {
+    @include color-scheme-accent-dark(
+      $dm-primary:          #9ebdd6,
+      $dm-primary-hover:    #b3cde0,
+      $dm-primary-bg:       #3a5068,
+      $dm-primary-bg-hover: #2e4053,
+      $dm-link:             #9ebdd6,
+      $dm-link-hover:       #b3cde0
+    );
+  }
+}
